@@ -1,4 +1,4 @@
-package com.rukatuk;
+package com.rukatuk.mobile;
 
 import com.facebook.react.ReactActivity;
 

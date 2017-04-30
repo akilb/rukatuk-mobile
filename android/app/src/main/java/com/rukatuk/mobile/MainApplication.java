@@ -1,4 +1,4 @@
-package com.rukatuk;
+package com.rukatuk.mobile;
 
 import android.app.Application;
 
