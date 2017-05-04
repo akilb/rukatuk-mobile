@@ -1,10 +1,16 @@
 import { Navigation } from 'react-native-navigation';
 
-import EventsScreen from './screens/events/EventsScreen';
-import SocialScreen from './screens/social/SocialScreen';
+import EventsScreen from '../screens/events/EventsScreen';
+import SocialScreen from '../screens/social/SocialScreen';
 
-// register all screens of the app (including internal ones)
-export function registerScreens() {
-  Navigation.registerComponent('Rukatuk.EventsScreen', () => EventsScreen);
-  Navigation.registerComponent('Rukatuk.SocialScreen', () => SocialScreen);
+const screens = {
+  events: 'Rukatuk.EventsScreen',
+  social: 'Rukatuk.SocialScreen'
+};
+
+function registerScreens() {
+  Navigation.registerComponent(screens.events, () => EventsScreen);
+  Navigation.registerComponent(screens.social, () => SocialScreen);
 }
+
+export { screens, registerScreens };

@@ -9,4 +9,4 @@ const images = {
   }
 };
 
-export default images;
+export { images };
