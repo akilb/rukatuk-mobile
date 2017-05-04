@@ -5,7 +5,7 @@ import {
   View
 } from 'react-native';
 
-export default class SingleScreen extends Component {
+export default class SocialScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
