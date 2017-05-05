@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import appStyles from '../../config/styles';
 import {
   StyleSheet,
   Text,
@@ -6,9 +7,13 @@ import {
 } from 'react-native';
 
 export default class SocialScreen extends Component {
+  static navigatorStyle = {
+    navBarHidden: true
+  }
+
   render() {
     return (
-      <View style={styles.container}>
+      <View style={appStyles.container}>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
