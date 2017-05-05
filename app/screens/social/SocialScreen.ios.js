@@ -6,7 +6,7 @@ import {
   WebView
 } from 'react-native';
 
-import appStyles from '../../config/styles';
+import appStyles, { theme } from '../../config/styles';
 import styles from './styles';
 import { socialItems } from './SocialScreen.common';
 
@@ -31,10 +31,11 @@ export default class SocialScreen extends Component {
     }
 
     return (
-      <View style={appStyles.container}>
+      <View style={styles.socialContainer}>
         <SegmentedControlIOS
           style={styles.segmentedBar}
           values={values}
+          tintColor={theme.colours.primary}
           selectedIndex={this.state.selectedIndex}
           onChange={this._onChange}/>
         <WebView source={{ uri: this.state.url }} />
