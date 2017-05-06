@@ -9,6 +9,11 @@ const theme = {
   }
 }
 
+const navigatorStyle = {
+  navBarTextColor: '#ffffff',
+  navBarBackgroundColor: theme.colours.dark
+}
+
 const appStyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -17,4 +22,4 @@ const appStyles = StyleSheet.create({
 });
 
 export default appStyles;
-export { theme };
+export { theme, navigatorStyle };
