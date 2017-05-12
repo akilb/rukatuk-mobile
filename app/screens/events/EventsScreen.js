@@ -1,18 +1,49 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
+  ListView,
   Text,
   View
 } from 'react-native';
 
 export default class EventsScreen extends Component {
+  constructor(props) {
+    super(props);
+
+    var dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    this.state = {
+      eventsDataSource: dataSource.cloneWithRows([])
+    };
+  }
+
+  componentDidMount() {
+    this.fetchEvents();
+  };
+
+  fetchEvents() {
+    this.props.fetchRemoteEvents()
+      .then(events => {
+        this.setState({
+          eventsDataSource: this.state.eventsDataSource.cloneWithRows(events)
+        });
+      })
+      .done();
+  }
+
   render() {
+    if (!this.state.eventsDataSource.getRowCount()) {
+      return (
+        <View style={styles.container}>
+          <Text>Loading..</Text>
+        </View>
+      );
+    }
+
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-      </View>
+      <ListView
+        dataSource={this.state.eventsDataSource}
+        renderRow={(event) => <Text>{event.name}</Text>}
+      />
     );
   }
 }

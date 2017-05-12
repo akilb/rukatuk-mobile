@@ -3,6 +3,7 @@ import { Navigation } from 'react-native-navigation';
 import { screens, registerScreens } from './config/screens';
 import { images } from './config/images';
 import { theme } from './config/styles';
+import { fetchRemoteEvents } from './utils/fetchEvents';
 
 registerScreens();
 
@@ -55,5 +56,8 @@ function getTabs() {
 Navigation.startTabBasedApp({
   tabs: getTabs(),
   tabsStyle: getTabsStyle(),
-  appStyle: getAppStyle()
+  appStyle: getAppStyle(),
+  passProps: {
+    fetchRemoteEvents: fetchRemoteEvents
+  }
 });
