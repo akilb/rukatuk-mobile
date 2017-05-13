@@ -21,13 +21,17 @@ export default class EventsScreen extends Component {
   };
 
   fetchEvents() {
-    this.props.fetchRemoteEvents()
-      .then(events => {
-        this.setState({
-          eventsDataSource: this.state.eventsDataSource.cloneWithRows(events)
-        });
-      })
+    this.props.fetchEvents.fetchLocalEvents()
+      .then(events => this.updateEvents(events))
+      .then(() => this.props.fetchEvents.fetchRemoteEvents())
+      .then(events => this.updateEvents(events))
       .done();
+  }
+
+  updateEvents(events) {
+    this.setState({
+      eventsDataSource: this.state.eventsDataSource.cloneWithRows(events)
+    });
   }
 
   render() {
