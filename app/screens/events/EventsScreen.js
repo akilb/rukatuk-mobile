@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import {
+  Image,
   StyleSheet,
   ListView,
   Text,
   View
 } from 'react-native';
+import Moment from 'moment';
+
+import appStyles, { theme, navigatorStyle } from '../../config/styles';
 
 export default class EventsScreen extends Component {
+  static navigatorStyle = navigatorStyle
+
   constructor(props) {
     super(props);
 
@@ -37,7 +43,7 @@ export default class EventsScreen extends Component {
   render() {
     if (!this.state.eventsDataSource.getRowCount()) {
       return (
-        <View style={styles.container}>
+        <View style={appStyles.container}>
           <Text>Loading..</Text>
         </View>
       );
@@ -45,28 +51,45 @@ export default class EventsScreen extends Component {
 
     return (
       <ListView
+        style={appStyles.container}
         dataSource={this.state.eventsDataSource}
-        renderRow={(event) => <Text>{event.name}</Text>}
-      />
+        renderRow={(event) => this.renderEventRow(event)}
+        />
     );
   }
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+  renderEventRow(event) {
+    return (
+      <View style={appStyles.card}>
+        <Image
+          source={{ uri: event.imageUrl }}
+          resizeMode='cover'
+          style = {{
+            flex: 1,
+            height: 210,
+            width: undefined
+          }} >
+        </Image>
+        <View style={{ padding: 10 }}>
+          <Text style={{
+            color: theme.colours.light,
+            fontSize: 18,
+            fontWeight: 'bold'
+          }}>
+            {event.name}
+          </Text>
+          <Text style={{
+            color: '#666666',
+            paddingTop: 3
+          }}>{event.venue.name}</Text>
+          <Text style={{
+            color: '#666666',
+            paddingTop: 1
+          }}>{Moment(event.startDate).format('ddd, D MMM @HH:mm')}</Text>
+        </View>
+      </View>
+    );
+
+    //{ event.startDate | date:'EEE, dd MMM @HH:mm'}
+  }
+}

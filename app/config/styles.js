@@ -10,7 +10,7 @@ const theme = {
 }
 
 const navigatorStyle = {
-  navBarTextColor: '#ffffff',
+  navBarTextColor: 'white',
   navBarBackgroundColor: theme.colours.dark
 }
 
@@ -18,6 +18,17 @@ const appStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#141414',
+  },
+
+  card: {
+    flex: 1,
+    margin: 10,
+    backgroundColor: theme.colours.secondary,
+    borderColor: theme.colours.secondary,
+    shadowOffset: { height: 1, width: 0 },
+    shadowRadius: 1.5,
+    shadowOpacity: 1,
+    shadowColor: '#666666'
   }
 });
 
