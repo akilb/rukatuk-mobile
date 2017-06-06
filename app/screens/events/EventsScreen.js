@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import {
+  ActivityIndicator,
   Image,
   StyleSheet,
   ListView,
+  ScrollView,
   Text,
   View
 } from 'react-native';
@@ -18,6 +20,8 @@ export default class EventsScreen extends Component {
 
     var dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
+      loading: false,
+      isError: false,
       eventsDataSource: dataSource.cloneWithRows([])
     };
   }
@@ -27,25 +31,59 @@ export default class EventsScreen extends Component {
   };
 
   fetchEvents() {
+    this.setState({
+      loading: true,
+      isError: false
+    });
+
     this.props.fetchEvents.fetchLocalEvents()
       .then(events => this.updateEvents(events))
       .then(() => this.props.fetchEvents.fetchRemoteEvents())
       .then(events => this.updateEvents(events))
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          loading: false,
+          isError: true
+        });
+      })
       .done();
   }
 
   updateEvents(events) {
     this.setState({
+      loading: false,
+      isError: false,
       eventsDataSource: this.state.eventsDataSource.cloneWithRows(events)
     });
   }
 
   render() {
-    if (!this.state.eventsDataSource.getRowCount()) {
+    if (!this.state.eventsDataSource.getRowCount() && this.state.loading) {
       return (
-        <View style={appStyles.container}>
-          <Text>Loading..</Text>
+        <View style={[{alignItems: 'center', justifyContent: 'center'}, appStyles.container]}>
+          <ActivityIndicator animating={true} size='large' />
         </View>
+      );
+    }
+
+    if (!this.state.eventsDataSource.getRowCount() && this.state.isError) {
+      return (
+        <ScrollView style={appStyles.container}>
+          <View style={[{
+            height: 80,
+            alignItems: 'center',
+            justifyContent: 'center'
+          }, appStyles.card]}>
+            <Text style={{
+              color: theme.colours.light,
+              fontSize: 16,
+              padding: 10
+            }}>
+              Oops! We couldn't load events. Pull on this card to try again.
+            </Text>
+          </View>
+        </ScrollView>
       );
     }
 
@@ -89,7 +127,5 @@ export default class EventsScreen extends Component {
         </View>
       </View>
     );
-
-    //{ event.startDate | date:'EEE, dd MMM @HH:mm'}
   }
 }

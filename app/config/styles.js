@@ -25,9 +25,11 @@ const appStyles = StyleSheet.create({
     margin: 10,
     backgroundColor: theme.colours.secondary,
     borderColor: theme.colours.secondary,
-    shadowOffset: { height: 1, width: 0 },
+    borderWidth: 0,
+    borderRadius: 4,
+    shadowOffset: { width: 0, height: 2 },
     shadowRadius: 1.5,
-    shadowOpacity: 1,
+    shadowOpacity: 0.5,
     shadowColor: '#666666'
   }
 });
