@@ -4,6 +4,7 @@ import {
   Image,
   StyleSheet,
   ListView,
+  RefreshControl,
   ScrollView,
   Text,
   View
@@ -21,6 +22,7 @@ export default class EventsScreen extends Component {
     var dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       loading: false,
+      refreshing: false,
       isError: false,
       eventsDataSource: dataSource.cloneWithRows([])
     };
@@ -30,11 +32,14 @@ export default class EventsScreen extends Component {
     this.fetchEvents();
   };
 
+  _onRefresh() {
+    this.setState({ refreshing: true });
+
+    this.fetchEvents();
+  }
+
   fetchEvents() {
-    this.setState({
-      loading: true,
-      isError: false
-    });
+    this.setState({ loading: true });
 
     this.props.fetchEvents.fetchLocalEvents()
       .then(events => this.updateEvents(events))
@@ -44,6 +49,7 @@ export default class EventsScreen extends Component {
         console.log(err);
         this.setState({
           loading: false,
+          refreshing: false,
           isError: true
         });
       })
@@ -53,13 +59,16 @@ export default class EventsScreen extends Component {
   updateEvents(events) {
     this.setState({
       loading: false,
+      refreshing: false,
       isError: false,
       eventsDataSource: this.state.eventsDataSource.cloneWithRows(events)
     });
   }
 
   render() {
-    if (!this.state.eventsDataSource.getRowCount() && this.state.loading) {
+    if (!this.state.eventsDataSource.getRowCount() &&
+        !this.state.refreshing &&
+        this.state.loading) {
       return (
         <View style={[{alignItems: 'center', justifyContent: 'center'}, appStyles.container]}>
           <ActivityIndicator animating={true} size='large' />
@@ -67,9 +76,14 @@ export default class EventsScreen extends Component {
       );
     }
 
+    var refreshControl = (<RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this._onRefresh.bind(this)} />);
     if (!this.state.eventsDataSource.getRowCount() && this.state.isError) {
       return (
-        <ScrollView style={appStyles.container}>
+        <ScrollView
+          style={appStyles.container}
+          refreshControl={refreshControl}>
           <View style={[{
             height: 80,
             alignItems: 'center',
@@ -91,6 +105,7 @@ export default class EventsScreen extends Component {
       <ListView
         style={appStyles.container}
         dataSource={this.state.eventsDataSource}
+        refreshControl={refreshControl}
         renderRow={(event) => this.renderEventRow(event)}
         />
     );
