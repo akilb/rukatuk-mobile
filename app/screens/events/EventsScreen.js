@@ -3,9 +3,9 @@ import {
   ActivityIndicator,
   Image,
   StyleSheet,
-  ListView,
   RefreshControl,
   ScrollView,
+  SectionList,
   Text,
   View
 } from 'react-native';
@@ -19,12 +19,12 @@ export default class EventsScreen extends Component {
   constructor(props) {
     super(props);
 
-    var dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       loading: false,
       refreshing: false,
       isError: false,
-      eventsDataSource: dataSource.cloneWithRows([])
+      upcomingEvents: [],
+      pastEvents: []
     };
   }
 
@@ -32,10 +32,10 @@ export default class EventsScreen extends Component {
     this.fetchEvents();
   };
 
-  _onRefresh() {
-    this.setState({ refreshing: true });
+  _onRefresh(self) {
+    self.setState({ refreshing: true });
 
-    this.fetchEvents();
+    self.fetchEvents();
   }
 
   fetchEvents() {
@@ -57,16 +57,40 @@ export default class EventsScreen extends Component {
   }
 
   updateEvents(events) {
+    events.sort(this.compareEvents);
+
+    let upcomingEvents = [];
+    let pastEvents = [];
+    let now = new Date();
+    for (let e of events) {
+      let startDate = new Date(e.startDate);
+      if (startDate > now) {
+        upcomingEvents.push(e);
+      } else {
+        pastEvents.push(e);
+      }
+    }
+
     this.setState({
       loading: false,
       refreshing: false,
       isError: false,
-      eventsDataSource: this.state.eventsDataSource.cloneWithRows(events)
+      upcomingEvents: upcomingEvents,
+      pastEvents: pastEvents
     });
   }
 
+  compareEvents(e1, e2) {
+    if (e1.startDate === e2.startDate) {
+      return 0;
+    }
+
+    return e1.startDate > e2.startDate ? -1 : 1;
+  }
+
   render() {
-    if (!this.state.eventsDataSource.getRowCount() &&
+    if (!this.state.upcomingEvents.length &&
+        !this.state.pastEvents.length &&
         !this.state.refreshing &&
         this.state.loading) {
       return (
@@ -76,14 +100,14 @@ export default class EventsScreen extends Component {
       );
     }
 
-    var refreshControl = (<RefreshControl
-                            refreshing={this.state.refreshing}
-                            onRefresh={this._onRefresh.bind(this)} />);
-    if (!this.state.eventsDataSource.getRowCount() && this.state.isError) {
+    if (!this.state.upcomingEvents.length &&
+        !this.state.pastEvents.length &&
+        this.state.isError) {
       return (
         <ScrollView
           style={appStyles.container}
-          refreshControl={refreshControl}>
+          refreshing={this.state.refreshing}
+          onRefresh={() => this._onRefresh(this)}>
           <View style={[{
             height: 80,
             alignItems: 'center',
@@ -102,16 +126,22 @@ export default class EventsScreen extends Component {
     }
 
     return (
-      <ListView
+      <SectionList
         style={appStyles.container}
-        dataSource={this.state.eventsDataSource}
-        refreshControl={refreshControl}
-        renderRow={(event) => this.renderEventRow(event)}
-        />
+        renderItem={this.renderEventRow}
+        keyExtractor={(event) => event.id}
+        refreshing={this.state.refreshing}
+        onRefresh={() => this._onRefresh(this)}
+        sections={[
+          { key: 'Upcoming', data: this.state.upcomingEvents },
+          { key: 'Past', data: this.state.pastEvents }
+        ]}
+      />
     );
   }
 
-  renderEventRow(event) {
+  renderEventRow(row) {
+    let event = row.item;
     return (
       <View style={appStyles.card}>
         <Image
