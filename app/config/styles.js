@@ -24,13 +24,10 @@ const appStyles = StyleSheet.create({
     flex: 1,
     margin: 10,
     backgroundColor: theme.colours.secondary,
-    borderColor: theme.colours.secondary,
+    borderColor: '#414141',
     borderWidth: 0,
-    borderRadius: 4,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 1.5,
-    shadowOpacity: 0.5,
-    shadowColor: '#666666'
+    borderBottomWidth: 2,
+    borderRadius: 3
   }
 });
 
