@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {
   ActivityIndicator,
+  FlatList,
   Image,
   StyleSheet,
   RefreshControl,
   ScrollView,
-  SectionList,
   Text,
   View
 } from 'react-native';
@@ -89,10 +89,9 @@ export default class EventsScreen extends Component {
   }
 
   render() {
-    if (!this.state.upcomingEvents.length &&
-        !this.state.pastEvents.length &&
-        !this.state.refreshing &&
-        this.state.loading) {
+    let hasEvents = this.state.upcomingEvents.length > 0 ||
+                    this.state.pastEvents.length > 0;
+    if (!hasEvents && this.state.loading) {
       return (
         <View style={[{alignItems: 'center', justifyContent: 'center'}, appStyles.container]}>
           <ActivityIndicator animating={true} size='large' />
@@ -100,50 +99,49 @@ export default class EventsScreen extends Component {
       );
     }
 
-    if (!this.state.upcomingEvents.length &&
-        !this.state.pastEvents.length &&
-        this.state.isError) {
-      return (
+    return (
         <ScrollView
           style={appStyles.container}
-          refreshing={this.state.refreshing}
-          onRefresh={() => this._onRefresh(this)}>
-          <View style={[{
-            height: 80,
-            alignItems: 'center',
-            justifyContent: 'center'
-          }, appStyles.card]}>
-            <Text style={{
-              color: theme.colours.light,
-              fontSize: 16,
-              padding: 10
-            }}>
-              Oops! We couldn't load events. Pull on this card to try again.
-            </Text>
-          </View>
-        </ScrollView>
-      );
-    }
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={() => this._onRefresh(this)} />
+          }>
+          {!hasEvents && this.state.isError && this.renderErrorCard()}
 
-    return (
-      <SectionList
-        style={appStyles.container}
-        renderItem={this.renderEventRow}
-        keyExtractor={(event) => event.id}
-        refreshing={this.state.refreshing}
-        onRefresh={() => this._onRefresh(this)}
-        sections={[
-          { key: 'Upcoming', data: this.state.upcomingEvents },
-          { key: 'Past', data: this.state.pastEvents }
-        ]}
-      />
+          {hasEvents && this.renderEvents()}
+        </ScrollView>
     );
   }
 
-  renderEventRow(row) {
-    let event = row.item;
+  renderEvents() {
     return (
-      <View style={appStyles.card}>
+      <View>
+        <View>
+          {this.state.upcomingEvents.map((event) => this.renderUpcomingEvent(event))}
+        </View>
+
+        <Text style={{
+            color: theme.colours.light,
+            fontSize: 18,
+            margin: 16,
+            marginBottom: 4
+        }}>
+          Past Events
+        </Text>
+
+        <FlatList
+          data={this.state.pastEvents}
+          renderItem={this.renderPastEvent}
+          keyExtractor={(event) => event.id}
+          horizontal={true} />
+      </View>
+    );
+  }
+
+  renderUpcomingEvent(event) {
+    return (
+      <View key={event.id} style={appStyles.card}>
         <Image
           source={{ uri: event.imageUrl }}
           resizeMode='cover'
@@ -170,6 +168,79 @@ export default class EventsScreen extends Component {
             paddingTop: 1
           }}>{Moment(event.startDate).format('ddd, D MMM @HH:mm')}</Text>
         </View>
+      </View>
+    );
+  }
+
+  renderPastEvent(item) {
+    let event = item.item;
+    return (
+      <View
+        key={event.id}
+        style={[
+          appStyles.card,
+          {
+            height: 180,
+            width: 120
+          }]}>
+        <Image
+          source={{ uri: event.imageUrl }}
+          resizeMode='cover'
+          style={{
+            flex: 1,
+            height: 90,
+            width: undefined
+          }} >
+        </Image>
+        <View style={{
+          padding: 6,
+          paddingTop: 10
+        }}>
+          <Text
+            ellipsizeMode={'tail'}
+            numberOfLines={1}
+            style={{
+              color: theme.colours.light,
+              fontSize: 15,
+              fontWeight: 'bold'
+            }}>
+            {event.name}
+          </Text>
+          <Text
+            ellipsizeMode={'tail'}
+            numberOfLines={1}
+            style={{
+              color: '#666666',
+              paddingTop: 3,
+              fontSize: 13
+            }}>{event.venue.name}</Text>
+          <Text
+            ellipsizeMode={'tail'}
+            numberOfLines={1}
+            style={{
+              color: '#666666',
+              paddingTop: 1,
+              fontSize: 13
+            }}>{Moment(event.startDate).format('D MMM YYYY')}</Text>
+        </View>
+      </View>
+    );
+  }
+
+  renderErrorCard() {
+    return (
+      <View style={[{
+        height: 80,
+        alignItems: 'center',
+        justifyContent: 'center'
+      }, appStyles.card]}>
+        <Text style={{
+          color: theme.colours.light,
+          fontSize: 16,
+          padding: 10
+        }}>
+          Oops! We couldn't load events. Pull on this card to try again.
+        </Text>
       </View>
     );
   }
