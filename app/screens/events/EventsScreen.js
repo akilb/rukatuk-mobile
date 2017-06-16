@@ -12,9 +12,11 @@ import {
 import Moment from 'moment';
 
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
+import Countdown from './Countdown';
 
 export default class EventsScreen extends Component {
   static navigatorStyle = navigatorStyle
+  static errorMessage = 'Oops! We couldn\'t load events. Pull on this card to try again.';
 
   constructor(props) {
     super(props);
@@ -107,25 +109,39 @@ export default class EventsScreen extends Component {
               refreshing={this.state.refreshing}
               onRefresh={() => this._onRefresh(this)} />
           }>
-          {!hasEvents && this.state.isError && this.renderErrorCard()}
+          {!hasEvents && this.state.isError && this.renderMessageCard(errorMessage)}
 
-          {hasEvents && this.renderEvents()}
+          {hasEvents && this.renderUpcomingEvents()}
+
+          {hasEvents && this.renderPastEvents()}
         </ScrollView>
     );
   }
 
-  renderEvents() {
+  renderUpcomingEvents() {
+    if (!this.state.upcomingEvents.length) {
+      return this.renderMessageCard('Stay tuned! Our next event is coming soon...')
+    }
+
+    let nextEvent = this.state.upcomingEvents[0];
     return (
       <View>
+        <Countdown date={new Date(nextEvent.startDate)} />
         <View>
           {this.state.upcomingEvents.map((event) => this.renderUpcomingEvent(event))}
         </View>
+      </View>
+    );
+  }
 
+  renderPastEvents() {
+    return (
+      <View>
         <Text style={{
-            color: theme.colours.light,
-            fontSize: 18,
-            margin: 16,
-            marginBottom: 4
+          color: theme.colours.light,
+          fontSize: 18,
+          margin: 16,
+          marginBottom: 4
         }}>
           Past Events
         </Text>
@@ -227,21 +243,17 @@ export default class EventsScreen extends Component {
     );
   }
 
-  renderErrorCard() {
-    return (
-      <View style={[{
-        height: 80,
-        alignItems: 'center',
-        justifyContent: 'center'
-      }, appStyles.card]}>
-        <Text style={{
-          color: theme.colours.light,
-          fontSize: 16,
-          padding: 10
-        }}>
-          Oops! We couldn't load events. Pull on this card to try again.
-        </Text>
-      </View>
-    );
+  renderMessageCard(message) {
+    <View style={[{
+      height: 80,
+      alignItems: 'center',
+      justifyContent: 'center'
+    }, appStyles.card]}>
+      <Text style={{
+        color: theme.colours.light,
+        fontSize: 16,
+        padding: 10
+      }}>{message}</Text>
+    </View>
   }
 }
