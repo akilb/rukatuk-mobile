@@ -29,6 +29,11 @@ const appStyles = StyleSheet.create({
     borderWidth: 0,
     borderBottomWidth: 2,
     borderRadius: 3
+  },
+
+  p: {
+    color: theme.colours.light,
+    fontSize: 15
   }
 });
 
