@@ -9,6 +9,7 @@ import Moment from 'moment';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
+import styles from './styles';
 
 export default class EventDetailScreen extends Component {
   static navigatorStyle = navigatorStyle;
@@ -19,8 +20,8 @@ export default class EventDetailScreen extends Component {
 
   render() {
     let event = this.props.event;
-    let startDateText = Moment(event.startDate).format('ddd, D MMM YYYY @ HH:mm');
-    let endDateText = Moment(event.endDate).format('HH:mm')
+    let startDateText = Moment(event.startDate).format('ddd, D MMM YYYY @ hh:mm a');
+    let endDateText = Moment(event.endDate).format('hh:mm a')
     return (
       <ScrollView style={appStyles.container}>
         <View style={appStyles.card}>
@@ -48,10 +49,9 @@ export default class EventDetailScreen extends Component {
         <View style={[
           appStyles.card,
           {
-            flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: 10
+            padding: 16
           }
         ]}>
           <View style={{
@@ -62,14 +62,35 @@ export default class EventDetailScreen extends Component {
             <Icon name="calendar-o" style={[
               appStyles.p,
               {
-                marginRight: 10,
-                fontSize: 30
+                marginRight: 12,
+                fontSize: 22
               }
             ]}></Icon>
             <Text style={appStyles.p}>
               {startDateText} - {endDateText}
             </Text>
           </View>
+
+          <View style={styles.separator} />
+
+          <Text
+            style={appStyles.p}
+            ellipsizeMode={"tail"}
+            numberOfLines={6}>
+            {event.descriptionText}
+          </Text>
+
+          <View style={styles.separator} />
+
+          <Text
+            textAlign='center'
+            style={{
+              color: theme.colours.primary,
+              fontSize: 15,
+              marginTop: 2
+            }}>
+            Learn more
+          </Text>
         </View>
       </ScrollView>
     );

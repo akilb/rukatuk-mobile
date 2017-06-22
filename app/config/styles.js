@@ -6,6 +6,7 @@ const theme = {
     secondary: '#2c2c2c',
     dark: '#212121',
     light: '#bebebe',
+    background: '#141414'
   }
 }
 
@@ -18,12 +19,15 @@ const navigatorStyle = {
 const appStyles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#141414',
+    backgroundColor: theme.colours.background,
   },
 
   card: {
     flex: 1,
-    margin: 10,
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 6,
+    marginBottom: 6,
     backgroundColor: theme.colours.secondary,
     borderColor: '#414141',
     borderWidth: 0,
@@ -33,7 +37,7 @@ const appStyles = StyleSheet.create({
 
   p: {
     color: theme.colours.light,
-    fontSize: 15
+    fontSize: 13
   }
 });
 
