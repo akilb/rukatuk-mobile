@@ -1,3 +1,6 @@
+# Sensitive data
+.env
+
 # OSX
 #
 .DS_Store
