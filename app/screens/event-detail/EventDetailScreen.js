@@ -10,6 +10,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import MapView from 'react-native-maps';
 
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
+import { images } from '../../config/images';
 import styles from './styles';
 
 export default class EventDetailScreen extends Component {
@@ -22,7 +23,9 @@ export default class EventDetailScreen extends Component {
   render() {
     let event = this.props.event;
     let startDateText = Moment(event.startDate).format('ddd, D MMM YYYY @ hh:mm a');
-    let endDateText = Moment(event.endDate).format('hh:mm a')
+    let endDateText = Moment(event.endDate).format('hh:mm a');
+    let latitude = Number.parseFloat(event.venue.latitude);
+    let longitude = Number.parseFloat(event.venue.longitude);
     return (
       <ScrollView style={appStyles.container}>
         <View style={appStyles.card}>
@@ -100,8 +103,8 @@ export default class EventDetailScreen extends Component {
               height: 200
             }}
             initialRegion={{
-              latitude: Number.parseFloat(event.venue.latitude),
-              longitude: Number.parseFloat(event.venue.longitude),
+              latitude: latitude,
+              longitude: longitude,
               latitudeDelta: 0.005,
               longitudeDelta: 0.010,
             }}
@@ -109,7 +112,16 @@ export default class EventDetailScreen extends Component {
             rotateEnabled={false}
             scrollEnabled={false}
             pitchEnabled={false}
-          />
+          >
+            <MapView.Marker
+              image={images.icons.mapMarker}
+              coordinate={{
+                latitude: latitude,
+                longitude: longitude
+              }}
+              centerOffset={{x: 0, y: -25}}
+            />
+          </MapView>
           <View style={{ padding: 10 }}>
             <Text style={[
               appStyles.p,
