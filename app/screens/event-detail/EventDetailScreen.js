@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   Image,
+  Linking,
   ScrollView,
   Text,
   View
@@ -8,6 +9,7 @@ import {
 import Moment from 'moment';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MapView from 'react-native-maps';
+import Button from 'apsl-react-native-button'
 
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
 import { images } from '../../config/images';
@@ -20,131 +22,156 @@ export default class EventDetailScreen extends Component {
     super(props);
   }
 
+  _onGetTicketsButtonPressed() {
+    return Linking.openURL(this.props.event.vanityUrl);
+  }
+
   render() {
     let event = this.props.event;
     let startDateText = Moment(event.startDate).format('ddd, D MMM YYYY @ hh:mm a');
     let endDateText = Moment(event.endDate).format('hh:mm a');
     let latitude = Number.parseFloat(event.venue.latitude);
     let longitude = Number.parseFloat(event.venue.longitude);
+    let showGetTicketsButton = new Date(this.props.event.startDate) > new Date();
     return (
-      <ScrollView style={appStyles.container}>
-        <View style={appStyles.card}>
-          <Image
-            source={{ uri: event.imageUrl }}
-            resizeMode='cover'
-            style={{
-              flex: 1,
-              height: 210,
-              width: undefined
-            }} >
-          </Image>
-          <View style={{ padding: 10 }}>
-            <Text style={{
-              color: theme.colours.light,
-              fontSize: 18,
-              textAlign: 'center',
-              fontWeight: 'bold'
-            }}>
-              {event.name}
-            </Text>
-          </View>
-        </View>
-
-        <View style={[
-          appStyles.card,
-          {
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 16
-          }
-        ]}>
-          <View style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <Icon name="calendar-o" style={[
-              appStyles.p,
-              {
-                marginRight: 12,
-                fontSize: 22
-              }
-            ]}></Icon>
-            <Text style={appStyles.p}>
-              {startDateText} - {endDateText}
-            </Text>
-          </View>
-
-          <View style={styles.separator} />
-
-          <Text
-            style={appStyles.p}
-            ellipsizeMode={"tail"}
-            numberOfLines={6}>
-            {event.descriptionText}
-          </Text>
-
-          <View style={styles.separator} />
-
-          <Text
-            textAlign='center'
-            style={{
-              color: theme.colours.primary,
-              fontSize: 15,
-              marginTop: 2
-            }}>
-            Learn more
-          </Text>
-        </View>
-
-        <View style={appStyles.card}>
-          <MapView
-            style={{
-              height: 200
-            }}
-            initialRegion={{
-              latitude: latitude,
-              longitude: longitude,
-              latitudeDelta: 0.005,
-              longitudeDelta: 0.010,
-            }}
-            zoomEnabled={false}
-            rotateEnabled={false}
-            scrollEnabled={false}
-            pitchEnabled={false}
-          >
-            <MapView.Marker
-              image={images.icons.mapMarker}
-              coordinate={{
-                latitude: latitude,
-                longitude: longitude
-              }}
-              centerOffset={{x: 0, y: -25}}
-            />
-          </MapView>
-          <View style={{ padding: 10 }}>
-            <Text style={[
-              appStyles.p,
-              {
+      <View style={appStyles.container}>
+        <ScrollView>
+          <View style={appStyles.card}>
+            <Image
+              source={{ uri: event.imageUrl }}
+              resizeMode='cover'
+              style={{
+                flex: 1,
+                height: 210,
+                width: undefined
+              }} >
+            </Image>
+            <View style={{ padding: 10 }}>
+              <Text style={{
+                color: theme.colours.light,
+                fontSize: 18,
+                textAlign: 'center',
                 fontWeight: 'bold'
-              }
-            ]}>
-              {event.venue.name}
+              }}>
+                {event.name}
+              </Text>
+            </View>
+          </View>
+
+          <View style={[
+            appStyles.card,
+            {
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: 16
+            }
+          ]}>
+            <View style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <Icon name="calendar-o" style={[
+                appStyles.p,
+                {
+                  marginRight: 12,
+                  fontSize: 22
+                }
+              ]}></Icon>
+              <Text style={appStyles.p}>
+                {startDateText} - {endDateText}
+              </Text>
+            </View>
+
+            <View style={styles.separator} />
+
+            <Text
+              style={appStyles.p}
+              ellipsizeMode={"tail"}
+              numberOfLines={6}>
+              {event.descriptionText}
             </Text>
-            <Text style={appStyles.p}>
-              {event.venue.addressLine1}
-            </Text>
-            <Text style={appStyles.p}>
-              {event.venue.city}, {event.venue.postalCode}
-            </Text>
-            <Text style={appStyles.p}>
-              {event.venue.country}
+
+            <View style={styles.separator} />
+
+            <Text
+              textAlign='center'
+              style={{
+                color: theme.colours.primary,
+                fontSize: 15,
+                marginTop: 2
+              }}>
+              Learn more
             </Text>
           </View>
-        </View>
-      </ScrollView>
-    );
 
-    // {"city":"London","country":"United Kingdom","postalCode":"SE10 0DX","longitude":"0.003664100000037251","addressLine1":"The O2","latitude":"51.5025248","addressLine2":"Greenwich","name":"All Bar One O2"}
+          <View style={appStyles.card}>
+            <MapView
+              style={{
+                height: 200
+              }}
+              initialRegion={{
+                latitude: latitude,
+                longitude: longitude,
+                latitudeDelta: 0.005,
+                longitudeDelta: 0.010,
+              }}
+              zoomEnabled={false}
+              rotateEnabled={false}
+              scrollEnabled={false}
+              pitchEnabled={false}
+            >
+              <MapView.Marker
+                image={images.icons.mapMarker}
+                coordinate={{
+                  latitude: latitude,
+                  longitude: longitude
+                }}
+                centerOffset={{x: 0, y: -25}}
+              />
+            </MapView>
+            <View style={{ padding: 10 }}>
+              <Text style={[
+                appStyles.p,
+                {
+                  fontWeight: 'bold'
+                }
+              ]}>
+                {event.venue.name}
+              </Text>
+              <Text style={appStyles.p}>
+                {event.venue.addressLine1}
+              </Text>
+              <Text style={appStyles.p}>
+                {event.venue.city}, {event.venue.postalCode}
+              </Text>
+              <Text style={appStyles.p}>
+                {event.venue.country}
+              </Text>
+            </View>
+          </View>
+        </ScrollView>
+
+        {
+          showGetTicketsButton &&
+          (
+            <View style={styles.footer}>
+              <View style={{ flex: 0.4 }} />
+              <View style={{
+                flex: 0.6,
+                alignContent: 'center'
+              }}>
+                <Button
+                  style={styles.button}
+                  textStyle={styles.buttonText}
+                  onPress={() => this._onGetTicketsButtonPressed()}>
+                  Get Tickets
+              </Button>
+              </View>
+            </View>
+          )
+        }
+      </View>
+    );
   }
 }
