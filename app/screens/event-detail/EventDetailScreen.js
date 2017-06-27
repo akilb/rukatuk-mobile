@@ -4,6 +4,7 @@ import {
   Linking,
   ScrollView,
   Text,
+  TouchableWithoutFeedback,
   View
 } from 'react-native';
 import Moment from 'moment';
@@ -13,6 +14,7 @@ import Button from 'apsl-react-native-button'
 
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
 import { images } from '../../config/images';
+import { screens } from '../../config/screens';
 import styles from './styles';
 
 export default class EventDetailScreen extends Component {
@@ -22,8 +24,15 @@ export default class EventDetailScreen extends Component {
     super(props);
   }
 
-  _onGetTicketsButtonPressed() {
-    return Linking.openURL(this.props.event.vanityUrl);
+  _onGetTicketsButtonPressed(event) {
+    return Linking.openURL(event.vanityUrl);
+  }
+
+  _onPressEventDescription(event) {
+    this.props.navigator.push({
+      screen: screens.eventDescription,
+      passProps: { event }
+    });
   }
 
   render() {
@@ -94,18 +103,29 @@ export default class EventDetailScreen extends Component {
 
             <View style={styles.separator} />
 
-            <Text
-              textAlign='center'
-              style={{
-                color: theme.colours.primary,
-                fontSize: 15,
-                marginTop: 2
-              }}>
-              Learn more
-            </Text>
+            <TouchableWithoutFeedback
+              onPress={() => this._onPressEventDescription(event)}
+              style={{flex: 1}}>
+              <View>
+                <Text
+                  textAlign='center'
+                  style={{
+                    color: theme.colours.primary,
+                    fontSize: 15,
+                    marginTop: 2
+                  }}>
+                  Learn more
+                </Text>
+              </View>
+            </TouchableWithoutFeedback>
           </View>
 
-          <View style={appStyles.card}>
+          <View style={[
+            appStyles.card,
+            {
+              marginBottom: 70
+            }
+          ]}>
             <MapView
               style={{
                 height: 200
@@ -164,7 +184,7 @@ export default class EventDetailScreen extends Component {
                 <Button
                   style={styles.button}
                   textStyle={styles.buttonText}
-                  onPress={() => this._onGetTicketsButtonPressed()}>
+                  onPress={() => this._onGetTicketsButtonPressed(event)}>
                   Get Tickets
               </Button>
               </View>
