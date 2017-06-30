@@ -3,6 +3,7 @@ package com.rukatuk.mobile;
 import com.facebook.react.ReactPackage;
 import com.reactnativenavigation.NavigationApplication;
 import com.airbnb.android.react.maps.MapsPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +19,8 @@ public class MainApplication extends NavigationApplication {
     public List<ReactPackage> createAdditionalReactPackages() {
         // // Add additional packages you require here
         return Arrays.<ReactPackage>asList(
-                  new MapsPackage()
+                  new MapsPackage(),
+                  new VectorIconsPackage()
               );
     }
 }

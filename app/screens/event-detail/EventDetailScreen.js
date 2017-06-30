@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {
   Image,
   Linking,
+  Platform,
   ScrollView,
+  Share,
   Text,
   TouchableWithoutFeedback,
   View
@@ -22,6 +24,36 @@ export default class EventDetailScreen extends Component {
 
   constructor(props) {
     super(props);
+
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent.bind(this));
+  }
+
+  componentDidMount() {
+    let shareIcon = Platform.OS === 'ios' ? 'share-square-o' : 'share-alt';
+    Icon
+      .getImageSource(shareIcon, 20, 'white')
+      .then((mapIcon) => {
+        this.props.navigator.setButtons({
+          rightButtons: [
+            {
+              id: 'share',
+              icon: mapIcon
+            }
+          ]
+        });
+      });
+  }
+
+  onNavigatorEvent(navigatorEvent) {
+    if (navigatorEvent.type !== 'NavBarButtonPress' || navigatorEvent.id !== 'share') {
+      return;
+    }
+
+    return Share.share({
+      title: this.props.event.name,
+      message: this.props.event.name + ' ' + this.props.event.vanityUrl,
+      url: this.props.event.vanityUrl
+    });
   }
 
   _onGetTicketsButtonPressed(event) {
