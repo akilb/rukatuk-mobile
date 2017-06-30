@@ -45,6 +45,7 @@ export default class EventsScreen extends Component {
   _onPressEvent(event) {
     this.props.navigator.push({
       screen: screens.eventDetail,
+      title: 'Event Details',
       passProps: {event}
     });
   }

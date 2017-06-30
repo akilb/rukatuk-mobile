@@ -31,6 +31,15 @@ export default class EventDetailScreen extends Component {
   _onPressEventDescription(event) {
     this.props.navigator.push({
       screen: screens.eventDescription,
+      title: 'Event Description',
+      passProps: { event }
+    });
+  }
+
+  _onPressEventMap(event) {
+    this.props.navigator.push({
+      screen: screens.eventMap,
+      title: 'Event Map',
       passProps: { event }
     });
   }
@@ -103,9 +112,7 @@ export default class EventDetailScreen extends Component {
 
             <View style={styles.separator} />
 
-            <TouchableWithoutFeedback
-              onPress={() => this._onPressEventDescription(event)}
-              style={{flex: 1}}>
+            <TouchableWithoutFeedback onPress={() => this._onPressEventDescription(event)}>
               <View>
                 <Text
                   textAlign='center'
@@ -120,56 +127,58 @@ export default class EventDetailScreen extends Component {
             </TouchableWithoutFeedback>
           </View>
 
-          <View style={[
-            appStyles.card,
-            {
-              marginBottom: 70
-            }
-          ]}>
-            <MapView
-              style={{
-                height: 200
-              }}
-              initialRegion={{
-                latitude: latitude,
-                longitude: longitude,
-                latitudeDelta: 0.005,
-                longitudeDelta: 0.010,
-              }}
-              zoomEnabled={false}
-              rotateEnabled={false}
-              scrollEnabled={false}
-              pitchEnabled={false}
-            >
-              <MapView.Marker
-                image={images.icons.mapMarker}
-                coordinate={{
-                  latitude: latitude,
-                  longitude: longitude
+          <TouchableWithoutFeedback onPress={() => this._onPressEventMap(event)}>
+            <View style={[
+              appStyles.card,
+              {
+                marginBottom: 70
+              }
+            ]}>
+              <MapView
+                style={{
+                  height: 200
                 }}
-                centerOffset={{x: 0, y: -25}}
-              />
-            </MapView>
-            <View style={{ padding: 10 }}>
-              <Text style={[
-                appStyles.p,
-                {
-                  fontWeight: 'bold'
-                }
-              ]}>
-                {event.venue.name}
-              </Text>
-              <Text style={appStyles.p}>
-                {event.venue.addressLine1}
-              </Text>
-              <Text style={appStyles.p}>
-                {event.venue.city}, {event.venue.postalCode}
-              </Text>
-              <Text style={appStyles.p}>
-                {event.venue.country}
-              </Text>
+                initialRegion={{
+                  latitude: latitude,
+                  longitude: longitude,
+                  latitudeDelta: 0.005,
+                  longitudeDelta: 0.010,
+                }}
+                zoomEnabled={false}
+                rotateEnabled={false}
+                scrollEnabled={false}
+                pitchEnabled={false}
+              >
+                <MapView.Marker
+                  image={images.icons.mapMarker}
+                  coordinate={{
+                    latitude: latitude,
+                    longitude: longitude
+                  }}
+                  centerOffset={{x: 0, y: -25}}
+                />
+              </MapView>
+              <View style={{ padding: 10 }}>
+                <Text style={[
+                  appStyles.p,
+                  {
+                    fontWeight: 'bold'
+                  }
+                ]}>
+                  {event.venue.name}
+                </Text>
+                <Text style={appStyles.p}>
+                  {event.venue.addressLine1}
+                </Text>
+                <Text style={appStyles.p}>
+                  {event.venue.city}, {event.venue.postalCode}
+                </Text>
+                <Text style={appStyles.p}>
+                  {event.venue.country}
+                </Text>
+              </View>
             </View>
-          </View>
+          </TouchableWithoutFeedback>
         </ScrollView>
 
         {
