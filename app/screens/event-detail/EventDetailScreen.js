@@ -49,9 +49,14 @@ export default class EventDetailScreen extends Component {
       return;
     }
 
+    let message = this.props.event.name;
+    if (Platform.OS === 'android') {
+      message += ' ' + this.props.event.vanityUrl;
+    }
+
     return Share.share({
       title: this.props.event.name,
-      message: this.props.event.name + ' ' + this.props.event.vanityUrl,
+      message: message,
       url: this.props.event.vanityUrl
     });
   }
