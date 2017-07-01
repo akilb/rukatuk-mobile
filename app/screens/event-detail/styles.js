@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   footer: {
-    backgroundColor: 'rgba(10, 10, 10, 0.9)',
+    backgroundColor: 'rgba(10, 10, 10, 0.7)',
     position: 'absolute',
     flexDirection: 'row',
     alignItems: 'center',
