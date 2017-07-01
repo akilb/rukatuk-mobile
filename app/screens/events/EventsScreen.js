@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   ActivityIndicator,
   FlatList,
-  Image,
   StyleSheet,
   RefreshControl,
   ScrollView,
@@ -11,6 +10,7 @@ import {
   View
 } from 'react-native';
 import Moment from 'moment';
+import { CachedImage } from "react-native-img-cache";
 
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
 import { screens } from '../../config/screens';
@@ -169,15 +169,14 @@ export default class EventsScreen extends Component {
     return (
       <TouchableHighlight key={event.id} onPress={() => this._onPressEvent(event)}>
         <View style={appStyles.card}>
-          <Image
+          <CachedImage
             source={{ uri: event.imageUrl }}
             resizeMode='cover'
             style = {{
               flex: 1,
               height: 210,
               width: undefined
-            }} >
-          </Image>
+            }} />
           <View style={{ padding: 10 }}>
             <Text style={{
               color: theme.colours.light,
@@ -212,15 +211,14 @@ export default class EventsScreen extends Component {
               height: 180,
               width: 120
             }]}>
-          <Image
+          <CachedImage
             source={{ uri: event.imageUrl }}
             resizeMode='cover'
             style={{
               flex: 1,
               height: 90,
               width: undefined
-            }} >
-          </Image>
+            }} />
           <View style={{
             padding: 6,
             paddingTop: 10
