@@ -95,6 +95,7 @@ export default class EventDetailScreen extends Component {
           <View style={appStyles.card}>
             <CachedImage
               source={{ uri: event.imageUrl }}
+              defaultSource={images.placeHolder.large}
               resizeMode='cover'
               style={{
                 flex: 1,

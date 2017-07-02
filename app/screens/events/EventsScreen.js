@@ -13,6 +13,7 @@ import Moment from 'moment';
 import { CachedImage } from "react-native-img-cache";
 
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
+import { images } from '../../config/images';
 import { screens } from '../../config/screens';
 import Countdown from './Countdown';
 
@@ -171,6 +172,7 @@ export default class EventsScreen extends Component {
         <View style={appStyles.card}>
           <CachedImage
             source={{ uri: event.imageUrl }}
+            defaultSource={images.placeHolder.large}
             resizeMode='cover'
             style = {{
               flex: 1,
@@ -213,6 +215,7 @@ export default class EventsScreen extends Component {
             }]}>
           <CachedImage
             source={{ uri: event.imageUrl }}
+            defaultSource={images.placeHolder.small}
             resizeMode='cover'
             style={{
               flex: 1,
