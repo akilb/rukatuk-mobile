@@ -7,6 +7,10 @@ const images = {
       socialSelected: require('../images/tab-social-selected.png')
     },
     mapMarker: require('../images/map_marker.png')
+  },
+  placeHolder: {
+    large: require('../images/placeholder.png'),
+    small: require('../images/placeholder_square.png')
   }
 };
 
