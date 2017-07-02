@@ -84,6 +84,8 @@ export default class EventsScreen extends Component {
       }
     }
 
+    upcomingEvents.sort((a, b) => this.compareEvents(a, b) * -1);
+
     this.setState({
       loading: false,
       refreshing: false,

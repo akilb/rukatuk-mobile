@@ -40,11 +40,14 @@ export default class SocialScreen extends Component {
           selectedIndex={this.state.selectedIndex}
           onTabPress={this._onTabPress}
           borderRadius={0}
-          tabsContainerStyle={{ height: 50, backgroundColor: '#F2F2F2' }}
-          tabStyle={{ backgroundColor: '#F2F2F2', borderWidth: 0 }}
-          activeTabStyle={{ backgroundColor: 'white', marginTop: 2 }}
-          tabTextStyle={{ color: '#444444', fontWeight: 'bold' }}
-          activeTabTextStyle={{ color: '#888888' }} />
+          tabsContainerStyle={{
+            height: 50,
+            backgroundColor: theme.colours.secondary
+          }}
+          tabStyle={{ backgroundColor: theme.colours.secondary, borderWidth: 0 }}
+          activeTabStyle={{ backgroundColor: '#3c3c3c', marginTop: 2 }}
+          tabTextStyle={{ color: theme.colours.light, fontWeight: 'bold' }}
+          activeTabTextStyle={{ color: theme.colours.primary }} />
         <WebView source={{ uri: this.state.url }} />
       </View>
     );
