@@ -7,6 +7,18 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10
   },
+  countdownHeader: {
+    textAlign: 'center',
+    color: theme.colours.light,
+    fontSize: 13,
+    fontWeight: 'bold'
+  },
+  digitRowContainer: {
+    flex: 1,
+    marginTop: 6,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
   digitContainer: {
     alignItems: 'center'
   },
