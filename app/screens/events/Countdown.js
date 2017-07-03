@@ -61,19 +61,9 @@ export default class Countdown extends Component {
     return (
       <View style={[appStyles.card, styles.countdownContainer]}>
         <View style={{flex: 1}}>
-          <Text style={{
-            textAlign: 'center',
-            color: theme.colours.light,
-            fontSize: 13,
-            fontWeight: 'bold',
-            paddingBottom: 6
-          }}>COUNTDOWN TO NEXT EVENT</Text>
+          <Text style={styles.countdownHeader}>COUNTDOWN TO NEXT EVENT</Text>
         </View>
-        <View style={{
-          flex: 1,
-          flexDirection: 'row',
-          justifyContent: 'space-around'
-        }}>
+        <View style={styles.digitRowContainer}>
           <View style={styles.digitContainer}>
             <View style={styles.digitScreen}>
               <Text style={styles.digitValue}>{padLeft(this.state.days)}</Text>

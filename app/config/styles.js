@@ -6,7 +6,8 @@ const theme = {
     secondary: '#2c2c2c',
     dark: '#212121',
     light: '#bebebe',
-    background: '#141414'
+    background: '#141414',
+    subtle: '#666666'
   }
 }
 
@@ -20,6 +21,11 @@ const appStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.colours.background,
+  },
+
+  centerChildren: {
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 
   card: {

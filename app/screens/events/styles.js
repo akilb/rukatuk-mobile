@@ -1,11 +1,65 @@
-import { StyleSheet } from 'react-native';
+import {
+  Dimensions,
+  StyleSheet
+} from 'react-native';
 import appStyles, { theme } from '../../config/styles';
 
+const cardMargin = 10;
+const upcomingImageWidth = Dimensions.get('window').width - (cardMargin * 2);
+const upcomingImageHeight = upcomingImageWidth / 1.75;
+const pastEventCardHeight = 180;
+const pastEventImageHeight = pastEventCardHeight / 2;
+
 const styles = StyleSheet.create({
+  eventSectionHeader: {
+    color: theme.colours.light,
+    fontSize: 18,
+    margin: 16,
+    marginBottom: 4
+  },
+  upcomingEventImage: {
+    flex: 1,
+    height: upcomingImageHeight
+  },
+  upcomingEventTitle: {
+    color: theme.colours.light,
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+  pastEventCard: {
+    height: pastEventCardHeight,
+    width: 120
+  },
+  pastEventImage: {
+    flex: 1,
+    height: pastEventCardHeight
+  },
+  pastEventTitle: {
+    color: theme.colours.light,
+    fontSize: 15,
+    fontWeight: 'bold'
+  },
+  messageCard: {
+    height: 80,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   countdownContainer: {
     flex: 1,
     paddingTop: 10,
     paddingBottom: 10
+  },
+  countdownHeader: {
+    textAlign: 'center',
+    color: theme.colours.light,
+    fontSize: 13,
+    fontWeight: 'bold'
+  },
+  digitRowContainer: {
+    flex: 1,
+    marginTop: 6,
+    flexDirection: 'row',
+    justifyContent: 'space-around'
   },
   digitContainer: {
     alignItems: 'center'

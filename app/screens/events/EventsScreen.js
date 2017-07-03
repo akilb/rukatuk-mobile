@@ -13,6 +13,7 @@ import Moment from 'moment';
 import { CachedImage } from "react-native-img-cache";
 
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
+import styles from './styles';
 import { images } from '../../config/images';
 import { screens } from '../../config/screens';
 import Countdown from './Countdown';
@@ -108,7 +109,7 @@ export default class EventsScreen extends Component {
                     this.state.pastEvents.length > 0;
     if (!hasEvents && this.state.loading) {
       return (
-        <View style={[{alignItems: 'center', justifyContent: 'center'}, appStyles.container]}>
+        <View style={[appStyles.container, appStyles.centerChildren]}>
           <ActivityIndicator animating={true} size='large' />
         </View>
       );
@@ -150,12 +151,7 @@ export default class EventsScreen extends Component {
   renderPastEvents() {
     return (
       <View>
-        <Text style={{
-          color: theme.colours.light,
-          fontSize: 18,
-          margin: 16,
-          marginBottom: 4
-        }}>
+        <Text style={styles.eventSectionHeader}>
           Past Events
         </Text>
 
@@ -175,26 +171,18 @@ export default class EventsScreen extends Component {
           <CachedImage
             source={{ uri: event.imageUrl }}
             defaultSource={images.placeHolder.large}
-            resizeMode='cover'
-            style = {{
-              flex: 1,
-              height: 210,
-              width: undefined
-            }} />
+            resizeMode='contain'
+            style = {styles.upcomingEventImage} />
           <View style={{ padding: 10 }}>
-            <Text style={{
-              color: theme.colours.light,
-              fontSize: 18,
-              fontWeight: 'bold'
-            }}>
+            <Text style={styles.upcomingEventTitle}>
               {event.name}
             </Text>
             <Text style={{
-              color: '#666666',
+              color: theme.colours.subtle,
               paddingTop: 3
             }}>{event.venue.name}</Text>
             <Text style={{
-              color: '#666666',
+              color: theme.colours.subtle,
               paddingTop: 1
             }}>{Moment(event.startDate).format('ddd, D MMM @HH:mm')}</Text>
           </View>
@@ -209,21 +197,12 @@ export default class EventsScreen extends Component {
       <TouchableHighlight key={event.id} onPress={() => this._onPressEvent(event)}>
         <View
           key={event.id}
-          style={[
-            appStyles.card,
-            {
-              height: 180,
-              width: 120
-            }]}>
+          style={[appStyles.card, styles.pastEventCard]}>
           <CachedImage
             source={{ uri: event.imageUrl }}
             defaultSource={images.placeHolder.small}
             resizeMode='cover'
-            style={{
-              flex: 1,
-              height: 90,
-              width: undefined
-            }} />
+            style={styles.pastEventImage} />
           <View style={{
             padding: 6,
             paddingTop: 10
@@ -231,18 +210,14 @@ export default class EventsScreen extends Component {
             <Text
               ellipsizeMode={'tail'}
               numberOfLines={1}
-              style={{
-                color: theme.colours.light,
-                fontSize: 15,
-                fontWeight: 'bold'
-              }}>
+              style={styles.pastEventTitle}>
               {event.name}
             </Text>
             <Text
               ellipsizeMode={'tail'}
               numberOfLines={1}
               style={{
-                color: '#666666',
+                color: theme.colours.subtle,
                 paddingTop: 3,
                 fontSize: 13
               }}>{event.venue.name}</Text>
@@ -250,7 +225,7 @@ export default class EventsScreen extends Component {
               ellipsizeMode={'tail'}
               numberOfLines={1}
               style={{
-                color: '#666666',
+                color: theme.colours.subtle,
                 paddingTop: 1,
                 fontSize: 13
               }}>{Moment(event.startDate).format('D MMM YYYY')}</Text>
@@ -261,11 +236,7 @@ export default class EventsScreen extends Component {
   }
 
   renderMessageCard(message) {
-    <View style={[{
-      height: 80,
-      alignItems: 'center',
-      justifyContent: 'center'
-    }, appStyles.card]}>
+    <View style={[appStyles.card, styles.messageCard]}>
       <Text style={{
         color: theme.colours.light,
         fontSize: 16,
