@@ -9,6 +9,9 @@ let toolbarBottomHeight = Platform.OS === 'ios' ? 113 : 136;
 let footerHeight = 60;
 let footerWidth = Dimensions.get('window').width;
 let footerTop = Dimensions.get('window').height - footerHeight - toolbarBottomHeight;
+const cardMargin = 10;
+const imageWidth = Dimensions.get('window').width - (cardMargin * 2);
+const imageHeight = imageWidth / 1.75;
 
 const styles = StyleSheet.create({
   eventTitle: {
@@ -16,6 +19,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     fontWeight: 'bold'
+  },
+  eventImage: {
+    flex: 1,
+    height: imageHeight
   },
   calendarIcon: {
     color: theme.colours.light,

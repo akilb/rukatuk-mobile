@@ -19,9 +19,8 @@ export default class EventDescriptionScreen extends Component {
       <ScrollView style={appStyles.container}>
         <View style={[
           appStyles.card,
+          appStyles.centerChildren,
           {
-            alignItems: 'center',
-            justifyContent: 'center',
             padding: 16
           }
         ]}>

@@ -171,12 +171,8 @@ export default class EventsScreen extends Component {
           <CachedImage
             source={{ uri: event.imageUrl }}
             defaultSource={images.placeHolder.large}
-            resizeMode='cover'
-            style = {{
-              flex: 1,
-              height: 210,
-              width: undefined
-            }} />
+            resizeMode='contain'
+            style = {styles.upcomingEventImage} />
           <View style={{ padding: 10 }}>
             <Text style={styles.upcomingEventTitle}>
               {event.name}
@@ -201,21 +197,12 @@ export default class EventsScreen extends Component {
       <TouchableHighlight key={event.id} onPress={() => this._onPressEvent(event)}>
         <View
           key={event.id}
-          style={[
-            appStyles.card,
-            {
-              height: 180,
-              width: 120
-            }]}>
+          style={[appStyles.card, styles.pastEventCard]}>
           <CachedImage
             source={{ uri: event.imageUrl }}
             defaultSource={images.placeHolder.small}
             resizeMode='cover'
-            style={{
-              flex: 1,
-              height: 90,
-              width: undefined
-            }} />
+            style={styles.pastEventImage} />
           <View style={{
             padding: 6,
             paddingTop: 10
@@ -249,11 +236,7 @@ export default class EventsScreen extends Component {
   }
 
   renderMessageCard(message) {
-    <View style={[{
-      height: 80,
-      alignItems: 'center',
-      justifyContent: 'center'
-    }, appStyles.card]}>
+    <View style={[appStyles.card, styles.messageCard]}>
       <Text style={{
         color: theme.colours.light,
         fontSize: 16,

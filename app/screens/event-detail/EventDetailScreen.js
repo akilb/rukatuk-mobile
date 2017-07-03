@@ -97,11 +97,7 @@ export default class EventDetailScreen extends Component {
               source={{ uri: event.imageUrl }}
               defaultSource={images.placeHolder.large}
               resizeMode='cover'
-              style={{
-                flex: 1,
-                height: 210,
-                width: undefined
-              }} />
+              style={styles.eventImage} />
             <View style={{ padding: 10 }}>
               <Text style={styles.eventTitle}>
                 {event.name}

@@ -1,5 +1,14 @@
-import { StyleSheet } from 'react-native';
+import {
+  Dimensions,
+  StyleSheet
+} from 'react-native';
 import appStyles, { theme } from '../../config/styles';
+
+const cardMargin = 10;
+const upcomingImageWidth = Dimensions.get('window').width - (cardMargin * 2);
+const upcomingImageHeight = upcomingImageWidth / 1.75;
+const pastEventCardHeight = 180;
+const pastEventImageHeight = pastEventCardHeight / 2;
 
 const styles = StyleSheet.create({
   eventSectionHeader: {
@@ -8,15 +17,32 @@ const styles = StyleSheet.create({
     margin: 16,
     marginBottom: 4
   },
+  upcomingEventImage: {
+    flex: 1,
+    height: upcomingImageHeight
+  },
   upcomingEventTitle: {
     color: theme.colours.light,
     fontSize: 18,
     fontWeight: 'bold'
   },
+  pastEventCard: {
+    height: pastEventCardHeight,
+    width: 120
+  },
+  pastEventImage: {
+    flex: 1,
+    height: pastEventCardHeight
+  },
   pastEventTitle: {
     color: theme.colours.light,
     fontSize: 15,
     fontWeight: 'bold'
+  },
+  messageCard: {
+    height: 80,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   countdownContainer: {
     flex: 1,
