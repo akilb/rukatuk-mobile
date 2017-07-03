@@ -13,6 +13,7 @@ import Moment from 'moment';
 import { CachedImage } from "react-native-img-cache";
 
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
+import styles from './styles';
 import { images } from '../../config/images';
 import { screens } from '../../config/screens';
 import Countdown from './Countdown';

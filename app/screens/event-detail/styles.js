@@ -11,6 +11,22 @@ let footerWidth = Dimensions.get('window').width;
 let footerTop = Dimensions.get('window').height - footerHeight - toolbarBottomHeight;
 
 const styles = StyleSheet.create({
+  eventTitle: {
+    color: theme.colours.light,
+    fontSize: 18,
+    textAlign: 'center',
+    fontWeight: 'bold'
+  },
+  calendarIcon: {
+    color: theme.colours.light,
+    marginRight: 12,
+    fontSize: 22
+  },
+  learnMoreLabel: {
+    color: theme.colours.primary,
+    fontSize: 15,
+    marginTop: 2
+  },
   separator: {
     height: 1,
     backgroundColor: theme.colours.dark,

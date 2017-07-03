@@ -103,12 +103,7 @@ export default class EventDetailScreen extends Component {
                 width: undefined
               }} />
             <View style={{ padding: 10 }}>
-              <Text style={{
-                color: theme.colours.light,
-                fontSize: 18,
-                textAlign: 'center',
-                fontWeight: 'bold'
-              }}>
+              <Text style={styles.eventTitle}>
                 {event.name}
               </Text>
             </View>
@@ -116,24 +111,16 @@ export default class EventDetailScreen extends Component {
 
           <View style={[
             appStyles.card,
+            appStyles.centerChildren,
             {
-              alignItems: 'center',
-              justifyContent: 'center',
               padding: 16
             }
           ]}>
-            <View style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>
-              <Icon name="calendar-o" style={[
-                appStyles.p,
-                {
-                  marginRight: 12,
-                  fontSize: 22
-                }
-              ]}></Icon>
+            <View style={[appStyles.centerChildren,
+              {
+                flexDirection: 'row',
+              }]}>
+              <Icon name="calendar-o" style={styles.calendarIcon} />
               <Text style={appStyles.p}>
                 {startDateText} - {endDateText}
               </Text>
@@ -154,11 +141,7 @@ export default class EventDetailScreen extends Component {
               <View>
                 <Text
                   textAlign='center'
-                  style={{
-                    color: theme.colours.primary,
-                    fontSize: 15,
-                    marginTop: 2
-                  }}>
+                  style={styles.learnMoreLabel}>
                   Learn more
                 </Text>
               </View>
