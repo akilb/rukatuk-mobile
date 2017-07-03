@@ -108,7 +108,7 @@ export default class EventsScreen extends Component {
                     this.state.pastEvents.length > 0;
     if (!hasEvents && this.state.loading) {
       return (
-        <View style={[{alignItems: 'center', justifyContent: 'center'}, appStyles.container]}>
+        <View style={[appStyles.container, appStyles.centerChildren]}>
           <ActivityIndicator animating={true} size='large' />
         </View>
       );
@@ -150,12 +150,7 @@ export default class EventsScreen extends Component {
   renderPastEvents() {
     return (
       <View>
-        <Text style={{
-          color: theme.colours.light,
-          fontSize: 18,
-          margin: 16,
-          marginBottom: 4
-        }}>
+        <Text style={styles.eventSectionHeader}>
           Past Events
         </Text>
 
@@ -182,19 +177,15 @@ export default class EventsScreen extends Component {
               width: undefined
             }} />
           <View style={{ padding: 10 }}>
-            <Text style={{
-              color: theme.colours.light,
-              fontSize: 18,
-              fontWeight: 'bold'
-            }}>
+            <Text style={styles.upcomingEventTitle}>
               {event.name}
             </Text>
             <Text style={{
-              color: '#666666',
+              color: theme.colours.subtle,
               paddingTop: 3
             }}>{event.venue.name}</Text>
             <Text style={{
-              color: '#666666',
+              color: theme.colours.subtle,
               paddingTop: 1
             }}>{Moment(event.startDate).format('ddd, D MMM @HH:mm')}</Text>
           </View>
@@ -231,18 +222,14 @@ export default class EventsScreen extends Component {
             <Text
               ellipsizeMode={'tail'}
               numberOfLines={1}
-              style={{
-                color: theme.colours.light,
-                fontSize: 15,
-                fontWeight: 'bold'
-              }}>
+              style={styles.pastEventTitle}>
               {event.name}
             </Text>
             <Text
               ellipsizeMode={'tail'}
               numberOfLines={1}
               style={{
-                color: '#666666',
+                color: theme.colours.subtle,
                 paddingTop: 3,
                 fontSize: 13
               }}>{event.venue.name}</Text>
@@ -250,7 +237,7 @@ export default class EventsScreen extends Component {
               ellipsizeMode={'tail'}
               numberOfLines={1}
               style={{
-                color: '#666666',
+                color: theme.colours.subtle,
                 paddingTop: 1,
                 fontSize: 13
               }}>{Moment(event.startDate).format('D MMM YYYY')}</Text>

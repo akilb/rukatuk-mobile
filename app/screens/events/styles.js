@@ -2,6 +2,22 @@ import { StyleSheet } from 'react-native';
 import appStyles, { theme } from '../../config/styles';
 
 const styles = StyleSheet.create({
+  eventSectionHeader: {
+    color: theme.colours.light,
+    fontSize: 18,
+    margin: 16,
+    marginBottom: 4
+  },
+  upcomingEventTitle: {
+    color: theme.colours.light,
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+  pastEventTitle: {
+    color: theme.colours.light,
+    fontSize: 15,
+    fontWeight: 'bold'
+  },
   countdownContainer: {
     flex: 1,
     paddingTop: 10,
