@@ -4,7 +4,6 @@ import com.facebook.react.ReactPackage;
 import com.reactnativenavigation.NavigationApplication;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.RNFetchBlob.RNFetchBlobPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,8 +20,7 @@ public class MainApplication extends NavigationApplication {
         // // Add additional packages you require here
         return Arrays.<ReactPackage>asList(
                   new MapsPackage(),
-                  new VectorIconsPackage(),
-                  new RNFetchBlobPackage()
+                  new VectorIconsPackage()
               );
     }
 }
