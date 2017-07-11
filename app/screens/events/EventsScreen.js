@@ -10,17 +10,16 @@ import {
   View
 } from 'react-native';
 import Moment from 'moment';
-import { CachedImage } from "react-native-img-cache";
 
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
 import styles from './styles';
 import { images } from '../../config/images';
 import { screens } from '../../config/screens';
+import ImageWithPlaceholder from '../../utils/ImageWithPlaceholder';
 import Countdown from './Countdown';
 
 export default class EventsScreen extends Component {
   static navigatorStyle = navigatorStyle
-  static errorMessage = 'Oops! We couldn\'t load events. Pull on this card to try again.';
 
   constructor(props) {
     super(props);
@@ -115,6 +114,7 @@ export default class EventsScreen extends Component {
       );
     }
 
+    let errorMessage = 'Oops! We couldn\'t load events. Pull on this card to try again.';
     return (
         <ScrollView
           style={appStyles.container}
@@ -168,11 +168,11 @@ export default class EventsScreen extends Component {
     return (
       <TouchableHighlight key={event.id} onPress={() => this._onPressEvent(event)}>
         <View style={appStyles.card}>
-          <CachedImage
+          <ImageWithPlaceholder
+            resizeMode='cover'
+            style={styles.upcomingEventImage}
             source={{ uri: event.imageUrl }}
-            defaultSource={images.placeHolder.large}
-            resizeMode='contain'
-            style = {styles.upcomingEventImage} />
+            placeholderSource={images.placeHolder.large} />
           <View style={{ padding: 10 }}>
             <Text style={styles.upcomingEventTitle}>
               {event.name}
@@ -198,11 +198,11 @@ export default class EventsScreen extends Component {
         <View
           key={event.id}
           style={[appStyles.card, styles.pastEventCard]}>
-          <CachedImage
-            source={{ uri: event.imageUrl }}
-            defaultSource={images.placeHolder.small}
+          <ImageWithPlaceholder
             resizeMode='cover'
-            style={styles.pastEventImage} />
+            style={styles.pastEventImage}
+            source={{ uri: event.imageUrl }}
+            placeholderSource={images.placeHolder.small} />
           <View style={{
             padding: 6,
             paddingTop: 10

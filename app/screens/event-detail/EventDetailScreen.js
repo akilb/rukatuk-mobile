@@ -13,11 +13,11 @@ import Moment from 'moment';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MapView from 'react-native-maps';
 import Button from 'apsl-react-native-button';
-import { CachedImage } from "react-native-img-cache";
 
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
 import { images } from '../../config/images';
 import { screens } from '../../config/screens';
+import ImageWithPlaceholder from '../../utils/ImageWithPlaceholder';
 import styles from './styles';
 
 export default class EventDetailScreen extends Component {
@@ -93,11 +93,11 @@ export default class EventDetailScreen extends Component {
       <View style={appStyles.container}>
         <ScrollView>
           <View style={appStyles.card}>
-            <CachedImage
-              source={{ uri: event.imageUrl }}
-              defaultSource={images.placeHolder.large}
+            <ImageWithPlaceholder
               resizeMode='cover'
-              style={styles.eventImage} />
+              style={styles.eventImage}
+              source={{ uri: event.imageUrl }}
+              placeholderSource={images.placeHolder.large} />
             <View style={{ padding: 10 }}>
               <Text style={styles.eventTitle}>
                 {event.name}

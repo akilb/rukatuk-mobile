@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
   },
   eventImage: {
     flex: 1,
-    height: imageHeight
+    height: imageHeight,
+    width: imageWidth
   },
   calendarIcon: {
     color: theme.colours.light,
