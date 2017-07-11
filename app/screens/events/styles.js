@@ -9,6 +9,7 @@ const upcomingImageWidth = Dimensions.get('window').width - (cardMargin * 2);
 const upcomingImageHeight = upcomingImageWidth / 1.75;
 const pastEventCardHeight = 180;
 const pastEventImageHeight = pastEventCardHeight / 2;
+const pastEventCardWidth = 120;
 
 const styles = StyleSheet.create({
   eventSectionHeader: {
@@ -19,7 +20,8 @@ const styles = StyleSheet.create({
   },
   upcomingEventImage: {
     flex: 1,
-    height: upcomingImageHeight
+    height: upcomingImageHeight,
+    width: upcomingImageWidth
   },
   upcomingEventTitle: {
     color: theme.colours.light,
@@ -28,11 +30,12 @@ const styles = StyleSheet.create({
   },
   pastEventCard: {
     height: pastEventCardHeight,
-    width: 120
+    width: pastEventCardWidth
   },
   pastEventImage: {
     flex: 1,
-    height: pastEventCardHeight
+    height: pastEventCardHeight,
+    width: pastEventCardWidth
   },
   pastEventTitle: {
     color: theme.colours.light,
