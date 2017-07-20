@@ -6,12 +6,17 @@ import {
 } from 'react-native';
 
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
+import { trackScreenView, trackEvent } from '../../utils/analytics';
 
 export default class EventDescriptionScreen extends Component {
   static navigatorStyle = navigatorStyle;
 
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    trackScreenView('Event Description - ' + this.props.event.name);
   }
 
   render() {

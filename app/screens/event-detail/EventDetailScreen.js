@@ -18,6 +18,7 @@ import appStyles, { theme, navigatorStyle } from '../../config/styles';
 import { images } from '../../config/images';
 import { screens } from '../../config/screens';
 import ImageWithPlaceholder from '../../utils/ImageWithPlaceholder';
+import { trackScreenView, trackEvent } from '../../utils/analytics';
 import styles from './styles';
 
 export default class EventDetailScreen extends Component {
@@ -30,6 +31,8 @@ export default class EventDetailScreen extends Component {
   }
 
   componentDidMount() {
+    trackScreenView('Event Detail - ' + this.props.event.name);
+
     let shareIcon = Platform.OS === 'ios' ? 'share-square-o' : 'share-alt';
     Icon
       .getImageSource(shareIcon, 20, 'white')
@@ -50,6 +53,8 @@ export default class EventDetailScreen extends Component {
       return;
     }
 
+    trackEvent('UI Action', 'Button Press', { label: 'Share Event' });
+
     let message = this.props.event.name;
     if (Platform.OS === 'android') {
       message += ' ' + this.props.event.vanityUrl;
@@ -63,6 +68,8 @@ export default class EventDetailScreen extends Component {
   }
 
   _onGetTicketsButtonPressed(event) {
+    trackEvent('UI Action', 'Button Press', { label: 'Get Tickets' });
+
     return Linking.openURL(event.vanityUrl);
   }
 
