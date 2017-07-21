@@ -16,6 +16,7 @@ import styles from './styles';
 import { images } from '../../config/images';
 import { screens } from '../../config/screens';
 import ImageWithPlaceholder from '../../utils/ImageWithPlaceholder';
+import { trackScreenView, trackEvent } from '../../utils/analytics';
 import Countdown from './Countdown';
 
 export default class EventsScreen extends Component {
@@ -34,10 +35,14 @@ export default class EventsScreen extends Component {
   }
 
   componentDidMount() {
+    trackScreenView('Events');
+
     this.fetchEvents();
   };
 
   _onRefresh() {
+    trackEvent('UI Action', 'Pull-To-Refresh', {label: 'Refresh Events'});
+
     this.setState({ refreshing: true });
 
     this.fetchEvents();
@@ -59,7 +64,8 @@ export default class EventsScreen extends Component {
       .then(() => this.props.fetchEvents.fetchRemoteEvents())
       .then(events => this.updateEvents(events))
       .catch(err => {
-        console.log(err);
+        trackEvent('Data', 'Error loading events');
+
         this.setState({
           loading: false,
           refreshing: false,

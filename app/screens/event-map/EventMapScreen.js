@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
 import { images } from '../../config/images';
+import { trackScreenView, trackEvent } from '../../utils/analytics';
 import styles from './styles';
 
 export default class EventMapScreen extends Component {
@@ -23,6 +24,8 @@ export default class EventMapScreen extends Component {
   }
 
   componentDidMount() {
+    trackScreenView('Event Map - ' + this.props.event.name);
+
     Icon
       .getImageSource('map-o', 20, 'white')
       .then((mapIcon) => {
@@ -41,6 +44,8 @@ export default class EventMapScreen extends Component {
     if (navigatorEvent.type !== 'NavBarButtonPress' || navigatorEvent.id !== 'directions') {
       return;
     }
+
+    trackEvent('UI Action', 'Button Press', { label: 'Open Maps' });
 
     let mapsUrlBase = Platform.OS === 'ios' ? 'http://maps.apple.com/?ll=' : 'geo:';
     let venue = this.props.event.venue;

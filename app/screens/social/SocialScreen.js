@@ -8,6 +8,7 @@ import SegmentedControlTab from 'react-native-segmented-control-tab'
 import styles from './styles';
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
 import { settings } from '../../config/settings';
+import { trackScreenView, trackEvent } from '../../utils/analytics';
 
 const socialItems = [
   { title: 'Instagram', url: settings.instagramUrl },
@@ -25,6 +26,10 @@ export default class SocialScreen extends Component {
       selectedIndex: 0,
       url: socialItems[0].url
     };
+  }
+
+  componentDidMount() {
+    trackScreenView('Social');
   }
 
   render() {
@@ -54,9 +59,16 @@ export default class SocialScreen extends Component {
   }
 
   _onTabPress = (index) => {
+    let item = socialItems[index];
+
+    trackEvent(
+      'UI Action',
+      'Button Press',
+      { label: 'Social Tab - ' + item.title });
+
     this.setState({
       selectedIndex: index,
-      url: socialItems[index].url
+      url: item.url
     });
   };
 }
