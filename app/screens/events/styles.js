@@ -8,8 +8,8 @@ const cardMargin = 10;
 const upcomingImageWidth = Dimensions.get('window').width - (cardMargin * 2);
 const upcomingImageHeight = upcomingImageWidth / 1.75;
 const pastEventCardHeight = 180;
-const pastEventImageHeight = pastEventCardHeight / 2;
 const pastEventCardWidth = 120;
+const pastEventImageHeight = pastEventCardWidth;
 
 const styles = StyleSheet.create({
   eventSectionHeader: {
@@ -29,18 +29,23 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   pastEventCard: {
-    height: pastEventCardHeight,
     width: pastEventCardWidth
   },
   pastEventImage: {
     flex: 1,
-    height: pastEventCardHeight,
+    height: pastEventImageHeight,
     width: pastEventCardWidth
   },
   pastEventTitle: {
     color: theme.colours.light,
-    fontSize: 15,
-    fontWeight: 'bold'
+    fontSize: 14,
+    fontWeight: 'bold',
+    paddingBottom: 2
+  },
+  pastEventSubtleText: {
+    color: theme.colours.subtle,
+    paddingTop: 2,
+    fontSize: 12
   },
   messageCard: {
     height: 80,

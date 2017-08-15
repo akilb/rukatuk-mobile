@@ -205,9 +205,9 @@ export default class EventsScreen extends Component {
           key={event.id}
           style={[appStyles.card, styles.pastEventCard]}>
           <ImageWithPlaceholder
-            resizeMode='cover'
+            resizeMode='contain'
             style={styles.pastEventImage}
-            source={{ uri: event.imageUrl }}
+            source={{ uri: event.smallImageUrl }}
             placeholderSource={images.placeHolder.small} />
           <View style={{
             padding: 6,
@@ -222,19 +222,11 @@ export default class EventsScreen extends Component {
             <Text
               ellipsizeMode={'tail'}
               numberOfLines={1}
-              style={{
-                color: theme.colours.subtle,
-                paddingTop: 3,
-                fontSize: 13
-              }}>{event.venue.name}</Text>
+              style={styles.pastEventSubtleText}>{event.venue.name}</Text>
             <Text
               ellipsizeMode={'tail'}
               numberOfLines={1}
-              style={{
-                color: theme.colours.subtle,
-                paddingTop: 1,
-                fontSize: 13
-              }}>{Moment(event.startDate).format('D MMM YYYY')}</Text>
+              style={styles.pastEventSubtleText}>{Moment(event.startDate).format('D MMM YYYY')}</Text>
           </View>
         </View>
       </TouchableHighlight>
