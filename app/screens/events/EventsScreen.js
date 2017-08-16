@@ -10,6 +10,7 @@ import {
   View
 } from 'react-native';
 import Moment from 'moment';
+import Badge from 'react-native-smart-badge';
 
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
 import styles from './styles';
@@ -82,8 +83,8 @@ export default class EventsScreen extends Component {
     let pastEvents = [];
     let now = new Date();
     for (let e of events) {
-      let startDate = new Date(e.startDate);
-      if (startDate > now) {
+      let endDate = new Date(e.endDate);
+      if (endDate > now) {
         upcomingEvents.push(e);
       } else {
         pastEvents.push(e);
@@ -171,6 +172,8 @@ export default class EventsScreen extends Component {
   }
 
   renderUpcomingEvent(event) {
+    var now = new Date();
+    let isLive = new Date(event.startDate) <= now;
     return (
       <TouchableHighlight key={event.id} onPress={() => this._onPressEvent(event)}>
         <View style={appStyles.card}>
@@ -186,11 +189,21 @@ export default class EventsScreen extends Component {
             <Text style={{
               color: theme.colours.subtle,
               paddingTop: 3
-            }}>{event.venue.name}</Text>
-            <Text style={{
-              color: theme.colours.subtle,
-              paddingTop: 1
-            }}>{Moment(event.startDate).format('ddd, D MMM @HH:mm')}</Text>
+            }}>
+              {event.venue.name}
+            </Text>
+            <View style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between'
+            }}>
+              <Text style={{
+                color: theme.colours.subtle,
+                paddingTop: 1
+              }}>
+                {Moment(event.startDate).format('ddd, D MMM @HH:mm')}
+              </Text>
+              { isLive && <Badge style={{ backgroundColor: theme.colours.primary }}>LIVE</Badge>}
+            </View>
           </View>
         </View>
       </TouchableHighlight>
