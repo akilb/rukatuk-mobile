@@ -22,6 +22,8 @@ export default class Countdown extends Component {
 
   componentDidMount() {
     let self = this;
+
+    this.updateTimeRemaining(self);
     Timer.setInterval(
       'tick',
       () => this.updateTimeRemaining(self),
@@ -34,7 +36,7 @@ export default class Countdown extends Component {
 
   updateTimeRemaining(self) {
     const totalNumberOfMilliSeconds = self.props.date.getTime() - new Date().getTime();
-    var remainingSeconds = Math.abs(totalNumberOfMilliSeconds / 1000);
+    var remainingSeconds = Math.max(totalNumberOfMilliSeconds / 1000, 0);
 
     let dayCount = Math.floor(remainingSeconds / 86400);
     remainingSeconds -= (dayCount * 86400);

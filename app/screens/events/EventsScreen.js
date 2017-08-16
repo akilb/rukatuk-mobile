@@ -83,8 +83,8 @@ export default class EventsScreen extends Component {
     let pastEvents = [];
     let now = new Date();
     for (let e of events) {
-      let startDate = new Date(e.startDate);
-      if (startDate > now) {
+      let endDate = new Date(e.endDate);
+      if (endDate > now) {
         upcomingEvents.push(e);
       } else {
         pastEvents.push(e);
@@ -172,6 +172,8 @@ export default class EventsScreen extends Component {
   }
 
   renderUpcomingEvent(event) {
+    var now = new Date();
+    let isLive = new Date(event.startDate) <= now;
     return (
       <TouchableHighlight key={event.id} onPress={() => this._onPressEvent(event)}>
         <View style={appStyles.card}>
@@ -200,7 +202,7 @@ export default class EventsScreen extends Component {
               }}>
                 {Moment(event.startDate).format('ddd, D MMM @HH:mm')}
               </Text>
-              <Badge style={{backgroundColor: theme.colours.primary}}>LIVE</Badge>
+              { isLive && <Badge style={{ backgroundColor: theme.colours.primary }}>LIVE</Badge>}
             </View>
           </View>
         </View>
