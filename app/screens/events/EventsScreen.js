@@ -247,12 +247,14 @@ export default class EventsScreen extends Component {
   }
 
   renderMessageCard(message) {
-    <View style={[appStyles.card, styles.messageCard]}>
-      <Text style={{
-        color: theme.colours.light,
-        fontSize: 16,
-        padding: 10
-      }}>{message}</Text>
-    </View>
+    return (
+      <View style={[appStyles.card, styles.messageCard]}>
+        <Text style={{
+          color: theme.colours.light,
+          fontSize: 16,
+          padding: 10
+        }}>{message}</Text>
+      </View>
+    );
   }
 }
