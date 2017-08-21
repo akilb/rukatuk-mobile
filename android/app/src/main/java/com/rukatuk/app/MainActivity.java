@@ -1,4 +1,4 @@
-package com.rukatuk.mobile;
+package com.rukatuk.app;
 
 import com.reactnativenavigation.controllers.SplashActivity;
 

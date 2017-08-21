@@ -1,4 +1,4 @@
-package com.rukatuk.mobile;
+package com.rukatuk.app;
 
 import com.facebook.react.ReactPackage;
 import com.reactnativenavigation.NavigationApplication;

@@ -1316,7 +1316,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rukatuk.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rukatuk.app;
 				PRODUCT_NAME = Rukatuk;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1346,7 +1346,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rukatuk.mobile;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rukatuk.app;
 				PRODUCT_NAME = Rukatuk;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

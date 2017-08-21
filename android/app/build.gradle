@@ -94,14 +94,14 @@ def enableSeparateBuildPerCPUArchitecture = false
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
  */
-def enableProguardInReleaseBuilds = false
+def enableProguardInReleaseBuilds = true
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
 
     defaultConfig {
-        applicationId "com.rukatuk.mobile"
+        applicationId "com.rukatuk.app"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
