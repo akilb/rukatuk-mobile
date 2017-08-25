@@ -17,6 +17,7 @@ The official iOS and Android mobile App for Ruk-A-Tuk Promotions.
 - [Genymotion](https://www.genymotion.com/) for Android emulation
 - [YARN](https://yarnpkg.com/) - for dependency management
 
+<img src="https://github.com/akilb/rukatuk-mobile/blob/develop/demo.gif?raw=true" width="240">
 
 ## Installation
 
