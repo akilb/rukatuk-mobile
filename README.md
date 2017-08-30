@@ -8,6 +8,8 @@
 
 The official iOS and Android mobile App for Ruk-A-Tuk Promotions.
 
+![screenshots](https://user-images.githubusercontent.com/510174/29857420-7f34880c-8d50-11e7-8baa-feb5659534d5.png)
+
 ## Requirements
 - [Node](https://nodejs.org) `4.x` or newer
 - [React Native](http://facebook.github.io/react-native/docs/getting-started.html) for development
@@ -16,8 +18,6 @@ The official iOS and Android mobile App for Ruk-A-Tuk Promotions.
 - [Android SDK](https://developer.android.com/sdk/) `23.0.1` or newer for Android development
 - [Genymotion](https://www.genymotion.com/) for Android emulation
 - [YARN](https://yarnpkg.com/) - for dependency management
-
-<img src="https://github.com/akilb/rukatuk-mobile/blob/develop/demo.gif?raw=true" width="240">
 
 ## Installation
 
