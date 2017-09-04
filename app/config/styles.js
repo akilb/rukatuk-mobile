@@ -14,7 +14,8 @@ const theme = {
 const navigatorStyle = {
   navBarTextColor: 'white',
   navBarBackgroundColor: theme.colours.dark,
-  navBarButtonColor: 'white'
+  navBarButtonColor: 'white',
+  screenBackgroundColor: theme.colours.background
 }
 
 const appStyles = StyleSheet.create({

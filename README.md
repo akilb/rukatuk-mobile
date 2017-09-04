@@ -3,10 +3,12 @@
 [![App Store](https://linkmaker.itunes.apple.com/htmlResources/assets/en_us//images/web/linkmaker/badge_appstore-lrg.svg)][appstore]
 [![Google Play](https://play.google.com/intl/en_gb/badges/images/badge_new.png)][googleplay]
 
-[appstore]: https://itunes.apple.com/us/app/ruk-a-tuk/id661478091?mt=8&uo=4
-[googleplay]: https://play.google.com/store/apps/details?id=com.rukatuk.mobile&hl=en_GB
+[appstore]: https://itunes.apple.com/us/app/ruk-a-tuk/id1273614449?ls=1&mt=8
+[googleplay]: https://play.google.com/store/apps/details?id=com.rukatuk.app&hl=en_GB
 
-The official mobile App for Ruk-A-Tuk Promotions.
+The official iOS and Android mobile App for Ruk-A-Tuk Promotions.
+
+![screenshots](https://user-images.githubusercontent.com/510174/29857420-7f34880c-8d50-11e7-8baa-feb5659534d5.png)
 
 ## Requirements
 - [Node](https://nodejs.org) `4.x` or newer
@@ -17,7 +19,6 @@ The official mobile App for Ruk-A-Tuk Promotions.
 - [Genymotion](https://www.genymotion.com/) for Android emulation
 - [YARN](https://yarnpkg.com/) - for dependency management
 
-
 ## Installation
 
 Clone this repo
@@ -26,6 +27,13 @@ Clone this repo
 $ git clone git@github.com:akilb/rukatuk-mobile.git
 $ cd rukatuk-mobile
 $ yarn install or npm install
+```
+
+Create a `.env` file and add the following:
+
+```
+GOOGLE_MAPS_API_KEY=ENTER_GOOGLE_MAPS_API_KEY
+GOOGLE_ANALYTICS_ACCOUNT=ENTER_GOOGLE_ANALYTICS_ACCOUNT
 ```
 
 ## How to start
