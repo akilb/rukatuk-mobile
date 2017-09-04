@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   ActivityIndicator,
   FlatList,
+  Image,
   StyleSheet,
   RefreshControl,
   ScrollView,
@@ -141,7 +142,7 @@ export default class EventsScreen extends Component {
 
   renderUpcomingEvents() {
     if (!this.state.upcomingEvents.length) {
-      return this.renderMessageCard('Stay tuned! Our next event is coming soon...')
+      return this.renderNextEventComingSoon();
     }
 
     let nextEvent = this.state.upcomingEvents[0];
@@ -167,6 +168,28 @@ export default class EventsScreen extends Component {
           renderItem={(item) => this.renderPastEvent(item)}
           keyExtractor={(event) => event.id}
           horizontal={true} />
+      </View>
+    );
+  }
+
+  renderNextEventComingSoon() {
+    return (
+      <View style={appStyles.card}>
+        <Image
+          resizeMode='cover'
+          style={styles.upcomingEventImage}
+          source={images.placeHolder.large} />
+        <View style={{ padding: 10 }}>
+          <Text style={styles.upcomingEventTitle}>
+            Next Event Coming Soon...
+          </Text>
+          <Text style={{
+            color: theme.colours.subtle,
+            paddingTop: 3
+          }}>
+            Stay tuned!
+          </Text>
+        </View>
       </View>
     );
   }
