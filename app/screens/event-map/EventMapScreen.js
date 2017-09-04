@@ -55,24 +55,24 @@ export default class EventMapScreen extends Component {
 
   render() {
     let event = this.props.event;
-    let latitude = Number.parseFloat(event.venue.latitude);
-    let longitude = Number.parseFloat(event.venue.longitude);
+    let region = {
+      latitude: Number.parseFloat(event.venue.latitude),
+      longitude: Number.parseFloat(event.venue.longitude),
+      latitudeDelta: 0.005,
+      longitudeDelta: 0.010,
+    };
     return (
       <View style={appStyles.container}>
         <MapView
           style={styles.map}
-          initialRegion={{
-            latitude: latitude,
-            longitude: longitude,
-            latitudeDelta: 0.005,
-            longitudeDelta: 0.010,
-          }}
+          initialRegion={region}
+          region={region}
         >
           <MapView.Marker
             image={images.icons.mapMarker}
             coordinate={{
-              latitude: latitude,
-              longitude: longitude
+              latitude: region.latitude,
+              longitude: region.longitude
             }}
             centerOffset={{ x: 0, y: -25 }}
           />

@@ -93,8 +93,12 @@ export default class EventDetailScreen extends Component {
     let event = this.props.event;
     let startDateText = Moment(event.startDate).format('ddd, D MMM YYYY @ hh:mm a');
     let endDateText = Moment(event.endDate).format('hh:mm a');
-    let latitude = Number.parseFloat(event.venue.latitude);
-    let longitude = Number.parseFloat(event.venue.longitude);
+    let region = {
+      latitude: Number.parseFloat(event.venue.latitude),
+      longitude: Number.parseFloat(event.venue.longitude),
+      latitudeDelta: 0.005,
+      longitudeDelta: 0.010,
+    };
     let showGetTicketsButton = new Date(this.props.event.startDate) > new Date();
     return (
       <View style={appStyles.container}>
@@ -162,12 +166,8 @@ export default class EventDetailScreen extends Component {
                 style={{
                   height: 200
                 }}
-                initialRegion={{
-                  latitude: latitude,
-                  longitude: longitude,
-                  latitudeDelta: 0.005,
-                  longitudeDelta: 0.010,
-                }}
+                initialRegion={region}
+                region={region}
                 zoomEnabled={false}
                 rotateEnabled={false}
                 scrollEnabled={false}
@@ -176,8 +176,8 @@ export default class EventDetailScreen extends Component {
                 <MapView.Marker
                   image={images.icons.mapMarker}
                   coordinate={{
-                    latitude: latitude,
-                    longitude: longitude
+                    latitude: region.latitude,
+                    longitude: region.longitude
                   }}
                   centerOffset={{x: 0, y: -25}}
                 />
