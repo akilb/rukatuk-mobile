@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Image,
+  ImageBackground,
   View
 } from 'react-native';
 
@@ -28,7 +29,7 @@ class ImageWithPlaceholder extends React.Component {
   render() {
     let showPlaceholder = !this.state.isLoaded || this.state.isError;
     return (
-      <Image
+      <ImageBackground
         onLoadEnd={this.onLoadEnd.bind(this)}
         onError={this.onError.bind(this)}
         style={this.props.style}
@@ -42,7 +43,7 @@ class ImageWithPlaceholder extends React.Component {
             resizeMode={this.props.resizeMode}>
           </Image>
         }
-      </Image>
+      </ImageBackground>
     );
   }
 }
