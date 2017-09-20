@@ -10,7 +10,7 @@
     "apsl-react-native-button": "^3.1.0",
     "moment": "^2.18.1",
     "react": "^16.0.0-alpha.12",
-    "react-native": "^0.47.1",
+    "react-native": "^0.48.3",
     "react-native-config": "^0.6.0",
     "react-native-google-analytics-bridge": "^5.2.2",
     "react-native-maps": "^0.16.2",
