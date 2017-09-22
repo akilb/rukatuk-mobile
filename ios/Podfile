@@ -1,0 +1,49 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '10.0'
+
+target 'Rukatuk' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  pod "Yoga", :path => "../node_modules/react-native/ReactCommon/yoga"
+  pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    'BatchedBridge', # Required For React Native 0.45.0+
+    'Core',
+    # Add any other subspecs you want to use in your project
+  ]
+
+  # Required by RNFirebase
+  pod 'Firebase/Core'
+  pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
+
+  # Firebase Opt-in Modules
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crash'
+
+  target 'RukatukTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'Rukatuk-tvOS' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for Rukatuk-tvOS
+
+  target 'Rukatuk-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name == "React"
+      target.remove_from_project
+    end
+  end
+end
