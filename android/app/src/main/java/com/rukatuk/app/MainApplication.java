@@ -6,6 +6,9 @@ import com.airbnb.android.react.maps.MapsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
+import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
+import io.invertase.firebase.crash.RNFirebaseCrashPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +27,10 @@ public class MainApplication extends NavigationApplication {
                   new ReactNativeConfigPackage(),
                   new MapsPackage(),
                   new VectorIconsPackage(),
-                  new GoogleAnalyticsBridgePackage()
+                  new GoogleAnalyticsBridgePackage(),
+                  new RNFirebasePackage(),
+                  new RNFirebaseAnalyticsPackage(),
+                  new RNFirebaseCrashPackage()
               );
     }
 }
