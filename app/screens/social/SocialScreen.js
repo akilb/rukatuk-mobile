@@ -62,8 +62,7 @@ export default class SocialScreen extends Component {
     let item = socialItems[index];
 
     trackEvent(
-      'UI Action',
-      'Button Press',
+      'button_pressed',
       { label: 'Social Tab - ' + item.title });
 
     this.setState({

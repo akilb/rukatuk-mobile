@@ -53,7 +53,7 @@ export default class EventDetailScreen extends Component {
       return;
     }
 
-    trackEvent('UI Action', 'Button Press', { label: 'Share Event' });
+    trackEvent('button_pressed', { label: 'Share Event' });
 
     let message = this.props.event.name;
     if (Platform.OS === 'android') {
@@ -68,7 +68,7 @@ export default class EventDetailScreen extends Component {
   }
 
   _onGetTicketsButtonPressed(event) {
-    trackEvent('UI Action', 'Button Press', { label: 'Get Tickets' });
+    trackEvent('button_pressed', { label: 'Get Tickets' });
 
     return Linking.openURL(event.vanityUrl);
   }
