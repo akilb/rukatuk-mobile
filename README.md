@@ -33,7 +33,6 @@ Create a `.env` file and add the following:
 
 ```
 GOOGLE_MAPS_API_KEY=ENTER_GOOGLE_MAPS_API_KEY
-GOOGLE_ANALYTICS_ACCOUNT=ENTER_GOOGLE_ANALYTICS_ACCOUNT
 ```
 
 ## How to start

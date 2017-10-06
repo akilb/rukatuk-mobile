@@ -4,7 +4,6 @@ import com.facebook.react.ReactPackage;
 import com.reactnativenavigation.NavigationApplication;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
@@ -27,7 +26,6 @@ public class MainApplication extends NavigationApplication {
                   new ReactNativeConfigPackage(),
                   new MapsPackage(),
                   new VectorIconsPackage(),
-                  new GoogleAnalyticsBridgePackage(),
                   new RNFirebasePackage(),
                   new RNFirebaseAnalyticsPackage(),
                   new RNFirebaseCrashPackage()
