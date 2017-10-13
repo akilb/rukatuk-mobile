@@ -24,6 +24,10 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
+GoogleService-Info.plist
+
+# Cocoapods - Pods/
+Pods/
 
 # Android/IntelliJ
 #
@@ -34,6 +38,7 @@ local.properties
 *.iml
 *.apk
 *.jks
+google-services.json
 
 # node.js
 #

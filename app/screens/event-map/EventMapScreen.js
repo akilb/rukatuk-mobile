@@ -45,7 +45,7 @@ export default class EventMapScreen extends Component {
       return;
     }
 
-    trackEvent('UI Action', 'Button Press', { label: 'Open Maps' });
+    trackEvent('button_pressed', { label: 'Open Maps' });
 
     let mapsUrlBase = Platform.OS === 'ios' ? 'http://maps.apple.com/?ll=' : 'geo:';
     let venue = this.props.event.venue;

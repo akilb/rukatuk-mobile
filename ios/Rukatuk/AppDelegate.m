@@ -11,6 +11,8 @@
 
 #import <React/RCTRootView.h>
 
+#import <Firebase.h>
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -44,6 +46,7 @@
    [self.window makeKeyAndVisible];
    */
   
+  [FIRApp configure];
   
   return YES;
 }

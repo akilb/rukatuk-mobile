@@ -43,7 +43,7 @@ export default class EventsScreen extends Component {
   };
 
   _onRefresh() {
-    trackEvent('UI Action', 'Pull-To-Refresh', {label: 'Refresh Events'});
+    trackEvent('pull_to_refresh', {label: 'Refresh Events'});
 
     this.setState({ refreshing: true });
 
@@ -66,7 +66,7 @@ export default class EventsScreen extends Component {
       .then(() => this.props.fetchEvents.fetchRemoteEvents())
       .then(events => this.updateEvents(events))
       .catch(err => {
-        trackEvent('Data', 'Error loading events');
+        trackEvent('error_loading_events');
 
         this.setState({
           loading: false,
