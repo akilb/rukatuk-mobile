@@ -31,4 +31,9 @@ public class MainApplication extends NavigationApplication {
                   new RNFirebaseCrashPackage()
               );
     }
+
+    @Override
+    protected String getJSMainModuleName() {
+       return "index";
+    }
 }
