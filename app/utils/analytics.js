@@ -1,14 +1,13 @@
-import firebase from './firebase';
 
-const analytics = firebase.analytics();
-analytics.setAnalyticsCollectionEnabled(true);
+// const analytics = firebase.analytics();
+// analytics.setAnalyticsCollectionEnabled(true);
 
 function trackScreenView(screenName) {
-  analytics.setCurrentScreen(screenName);
+  // analytics.setCurrentScreen(screenName);
 }
 
 function trackEvent(event, params) {
-  analytics.logEvent(event, params);
+  // analytics.logEvent(event, params);
 }
 
 export { trackScreenView, trackEvent };
