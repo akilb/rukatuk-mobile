@@ -35,15 +35,6 @@ Create a `.env` file and add the following:
 GOOGLE_MAPS_API_KEY=ENTER_GOOGLE_MAPS_API_KEY
 ```
 
-[firebase]: https://firebase.google.com/
-[firebase-ios-setup]: https://firebase.google.com/docs/ios/setup#add_firebase_to_your_app
-[firebase-android-setup]: https://firebase.google.com/docs/android/setup#manually_add_firebase
-
-This application uses [Firebase][firebase] for analytics, crash reporting and push notifications. You can use your own firebase account when running the app.
-
-- *[iOS]* Follow the add firebase to your app instructions [here][firebase-ios-setup] to generate your GoogleService-Info.plist file if you haven't done so already. Place this file in the ios/Rukatuk directory.
-- *[Android]* Follow the manually add firebase to your app instructions [here][firebase-android-setup] to generate your google-services.json file if you haven't done so already. Place this file in the android/app/ directory
-
 ## How to start
 
 ```sh
