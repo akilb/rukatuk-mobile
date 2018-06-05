@@ -11,7 +11,6 @@ import {
   View
 } from 'react-native';
 import Moment from 'moment';
-import Badge from 'react-native-smart-badge';
 
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
 import styles from './styles';
@@ -225,7 +224,6 @@ export default class EventsScreen extends Component {
               }}>
                 {Moment(event.startDate).format('ddd, D MMM @HH:mm')}
               </Text>
-              { isLive && <Badge style={{ backgroundColor: theme.colours.primary }}>LIVE</Badge>}
             </View>
           </View>
         </View>

@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 #import "AppDelegate.h"
 #import <React/RCTBundleURLProvider.h>
 
@@ -11,7 +18,8 @@
 
 #import <React/RCTRootView.h>
 
-#import <Firebase.h>
+#import "ReactNativeConfig.h"
+@import GoogleMaps;
 
 @implementation AppDelegate
 
@@ -20,7 +28,7 @@
   NSURL *jsCodeLocation;
 #ifdef DEBUG
   //  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
-  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
+  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 #else
   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
@@ -45,9 +53,9 @@
    self.window.rootViewController = rootViewController;
    [self.window makeKeyAndVisible];
    */
-  
-  [FIRApp configure];
-  
+
+  [GMSServices provideAPIKey:[ReactNativeConfig envFor:@"GOOGLE_MAPS_API_KEY_IOS"]];
+
   return YES;
 }
 

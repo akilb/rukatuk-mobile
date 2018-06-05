@@ -15,7 +15,7 @@ The official iOS and Android mobile App for Ruk-A-Tuk Promotions.
 - [React Native](http://facebook.github.io/react-native/docs/getting-started.html) for development
 - [Android Studio](https://developer.android.com/studio/index.html) for Android development
 - [Xcode](https://developer.apple.com/xcode/) for iOS development
-- [Android SDK](https://developer.android.com/sdk/) `23.0.1` or newer for Android development
+- [Android SDK](https://developer.android.com/sdk/) `26.0.0` or newer for Android development
 - [Genymotion](https://www.genymotion.com/) for Android emulation
 - [YARN](https://yarnpkg.com/) - for dependency management
 
@@ -27,22 +27,16 @@ Clone this repo
 $ git clone git@github.com:akilb/rukatuk-mobile.git
 $ cd rukatuk-mobile
 $ yarn install or npm install
+$ cd rukatuk-mobile/ios # iOS only
+$ pod install           # iOS only
 ```
 
 Create a `.env` file and add the following:
 
 ```
-GOOGLE_MAPS_API_KEY=ENTER_GOOGLE_MAPS_API_KEY
+GOOGLE_MAPS_API_KEY_ANDROID=ENTER_GOOGLE_MAPS_API_KEY
+GOOGLE_MAPS_API_KEY_IOS=ENTER_GOOGLE_MAPS_API_KEY
 ```
-
-[firebase]: https://firebase.google.com/
-[firebase-ios-setup]: https://firebase.google.com/docs/ios/setup#add_firebase_to_your_app
-[firebase-android-setup]: https://firebase.google.com/docs/android/setup#manually_add_firebase
-
-This application uses [Firebase][firebase] for analytics, crash reporting and push notifications. You can use your own firebase account when running the app.
-
-- *[iOS]* Follow the add firebase to your app instructions [here][firebase-ios-setup] to generate your GoogleService-Info.plist file if you haven't done so already. Place this file in the ios/Rukatuk directory.
-- *[Android]* Follow the manually add firebase to your app instructions [here][firebase-android-setup] to generate your google-services.json file if you haven't done so already. Place this file in the android/app/ directory
 
 ## How to start
 
