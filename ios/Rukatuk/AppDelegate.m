@@ -18,6 +18,9 @@
 
 #import <React/RCTRootView.h>
 
+#import "ReactNativeConfig.h"
+@import GoogleMaps;
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -50,7 +53,9 @@
    self.window.rootViewController = rootViewController;
    [self.window makeKeyAndVisible];
    */
-  
+
+  [GMSServices provideAPIKey:[ReactNativeConfig envFor:@"GOOGLE_MAPS_API_KEY_IOS"]];
+
   return YES;
 }
 
