@@ -23,6 +23,7 @@
 #import <AppCenterReactNative.h>
 #import <AppCenterReactNativeAnalytics.h>
 #import <AppCenterReactNativeCrashes.h>
+#import <AppCenterReactNativeShared/AppCenterReactNativeShared.h>
 
 #import <GoogleMaps/GoogleMaps.h>
 
@@ -62,6 +63,7 @@
   [GMSServices provideAPIKey:[ReactNativeConfig envFor:@"GOOGLE_MAPS_API_KEY_IOS"]];
 
   // Initialize AppCenter
+  [AppCenterReactNativeShared setAppSecret:[ReactNativeConfig envFor:@"APP_CENTER_SECRET_IOS"]];
   [AppCenterReactNative register];
   [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:true];
   [AppCenterReactNativeCrashes registerWithAutomaticProcessing];

@@ -40,7 +40,6 @@
 		2DCD954D1E0B4F2C00145EB5 /* RukatukTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* RukatukTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		32A2BC31906D56CF021ED1F8 /* libPods-Rukatuk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 987A876F63C0C353FB9DD3D6 /* libPods-Rukatuk.a */; };
-		3A08A7BC3D6E4CB2B566E0EA /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA2CF50A1B4F44D4B964525D /* AppCenter-Config.plist */; };
 		4D8A4479FEEC4CE19C945BD5 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4CE2E8F50264A9FB184F66B /* MaterialCommunityIcons.ttf */; };
 		4EB82B2D80D0DB419D9D599D /* libPods-Rukatuk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14001C8C3C6838CDFC349FF6 /* libPods-Rukatuk.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
@@ -50,7 +49,6 @@
 		85AE13D5BD5A46C881405806 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE3C743327E45018385A572 /* libReactNativeConfig.a */; };
 		9CB09889C01F4CD89CA82A26 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 192ED87E484E4479A4949EEC /* SimpleLineIcons.ttf */; };
 		9D0CA912C622410891071CBB /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91F281B0F06D418D9C41D430 /* Entypo.ttf */; };
-		9F334AFCA70B4CF081B269FE /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6355BD1EF73342F4B8120A5D /* libAirMaps.a */; };
 		A057CDE2DC8F417CA8D4AF63 /* libAppCenterReactNativeAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56C67F77A2AF41D4848FBC6B /* libAppCenterReactNativeAnalytics.a */; };
 		A1FD7D759A164D8F841BC3E0 /* libAppCenterReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1CBA52513B341EF896E5F30 /* libAppCenterReactNative.a */; };
 		A566F802C94FD82608886E39 /* libPods-Rukatuk-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8219A9898F0AAEE670D7B6 /* libPods-Rukatuk-tvOS.a */; };
@@ -446,7 +444,6 @@
 		D0D0603539B65AE510292E50 /* Pods-Rukatuk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rukatuk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rukatuk/Pods-Rukatuk.debug.xcconfig"; sourceTree = "<group>"; };
 		D17DEF74E21B4E489000597B /* AppCenterReactNative.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNative.xcodeproj; path = ../node_modules/appcenter/ios/AppCenterReactNative.xcodeproj; sourceTree = "<group>"; };
 		D4CE2E8F50264A9FB184F66B /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
-		DA2CF50A1B4F44D4B964525D /* AppCenter-Config.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "Rukatuk/AppCenter-Config.plist"; sourceTree = "<group>"; };
 		DE0423731E742B4E1AC0E4B4 /* libPods-RukatukTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RukatukTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF99A3EE3E2D153F38438662 /* Pods-RukatukTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RukatukTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RukatukTests/Pods-RukatukTests.release.xcconfig"; sourceTree = "<group>"; };
 		E1A6180703BB8325EA7BD351 /* Pods-RukatukTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RukatukTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RukatukTests/Pods-RukatukTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -490,7 +487,6 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				85AE13D5BD5A46C881405806 /* libReactNativeConfig.a in Frameworks */,
-				9F334AFCA70B4CF081B269FE /* libAirMaps.a in Frameworks */,
 				D4C0298AD7BB45E9BA9F24E5 /* libRNVectorIcons.a in Frameworks */,
 				32A2BC31906D56CF021ED1F8 /* libPods-Rukatuk.a in Frameworks */,
 				4EB82B2D80D0DB419D9D599D /* libPods-Rukatuk.a in Frameworks */,
@@ -723,7 +719,6 @@
 				A8165866E5969F259670BF63 /* Pods */,
 				F4FC1ACD1F744EB3000D25CF /* Recovered References */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				DA2CF50A1B4F44D4B964525D /* AppCenter-Config.plist */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -1396,7 +1391,6 @@
 				DEC9D8DAB88B4CF5B14AA101 /* Octicons.ttf in Resources */,
 				9CB09889C01F4CD89CA82A26 /* SimpleLineIcons.ttf in Resources */,
 				BFAB229663C441628A9D3474 /* Zocial.ttf in Resources */,
-				3A08A7BC3D6E4CB2B566E0EA /* AppCenter-Config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
