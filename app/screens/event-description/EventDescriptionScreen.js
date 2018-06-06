@@ -16,7 +16,7 @@ export default class EventDescriptionScreen extends Component {
   }
 
   componentDidMount() {
-    trackScreenView('Event Description - ' + this.props.event.name);
+    trackScreenView('Event Description', { Event: this.props.event.name });
   }
 
   render() {

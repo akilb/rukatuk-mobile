@@ -31,7 +31,7 @@ export default class EventDetailScreen extends Component {
   }
 
   componentDidMount() {
-    trackScreenView('Event Detail - ' + this.props.event.name);
+    trackScreenView('Event Detail', { Event: this.props.event.name });
 
     let shareIcon = Platform.OS === 'ios' ? 'share-square-o' : 'share-alt';
     Icon
@@ -53,7 +53,7 @@ export default class EventDetailScreen extends Component {
       return;
     }
 
-    trackEvent('button_pressed', { label: 'Share Event' });
+    trackEvent('Event Shared', { Event: this.props.event.name });
 
     let message = this.props.event.name;
     if (Platform.OS === 'android') {
@@ -68,7 +68,7 @@ export default class EventDetailScreen extends Component {
   }
 
   _onGetTicketsButtonPressed(event) {
-    trackEvent('button_pressed', { label: 'Get Tickets' });
+    trackEvent('Open Eventbrite', { Event: this.props.event.name });
 
     return Linking.openURL(event.vanityUrl);
   }
