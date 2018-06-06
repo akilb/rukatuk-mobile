@@ -19,7 +19,12 @@
 #import <React/RCTRootView.h>
 
 #import "ReactNativeConfig.h"
-@import GoogleMaps;
+
+#import <AppCenterReactNative.h>
+#import <AppCenterReactNativeAnalytics.h>
+#import <AppCenterReactNativeCrashes.h>
+
+#import <GoogleMaps/GoogleMaps.h>
 
 @implementation AppDelegate
 
@@ -55,6 +60,11 @@
    */
 
   [GMSServices provideAPIKey:[ReactNativeConfig envFor:@"GOOGLE_MAPS_API_KEY_IOS"]];
+
+  // Initialize AppCenter
+  [AppCenterReactNative register];
+  [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:true];
+  [AppCenterReactNativeCrashes registerWithAutomaticProcessing];
 
   return YES;
 }
