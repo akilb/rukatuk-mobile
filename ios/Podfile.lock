@@ -1,4 +1,11 @@
 PODS:
+  - AppCenter/Analytics (1.6.1):
+    - AppCenter/Core
+  - AppCenter/Core (1.6.1)
+  - AppCenter/Crashes (1.6.1):
+    - AppCenter/Core
+  - AppCenterReactNativeShared (1.5.1):
+    - AppCenter/Core (= 1.6.1)
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.5)
   - Folly (2016.09.26.00):
@@ -29,11 +36,10 @@ PODS:
     - GoogleMaps/Base
   - React (0.55.4):
     - React/Core (= 0.55.4)
-  - react-native-google-maps (0.21.0):
-    - Google-Maps-iOS-Utils (= 2.1.0)
+  - react-native-google-maps (0.20.1):
     - GoogleMaps (= 2.5.0)
     - React
-  - react-native-maps (0.21.0):
+  - react-native-maps (0.20.1):
     - React
   - React/Core (0.55.4):
     - yoga (= 0.55.4.React)
@@ -55,13 +61,26 @@ PODS:
     - React/PrivateDatabase
   - React/jsinspector (0.55.4)
   - React/PrivateDatabase (0.55.4)
+  - React/RCTActionSheet (0.55.4):
+    - React/Core
   - React/RCTAnimation (0.55.4):
     - React/Core
   - React/RCTBlob (0.55.4):
     - React/Core
+  - React/RCTGeolocation (0.55.4):
+    - React/Core
+  - React/RCTImage (0.55.4):
+    - React/Core
+    - React/RCTNetwork
+  - React/RCTLinkingIOS (0.55.4):
+    - React/Core
   - React/RCTNetwork (0.55.4):
     - React/Core
+  - React/RCTSettings (0.55.4):
+    - React/Core
   - React/RCTText (0.55.4):
+    - React/Core
+  - React/RCTVibration (0.55.4):
     - React/Core
   - React/RCTWebSocket (0.55.4):
     - React/Core
@@ -70,6 +89,9 @@ PODS:
   - yoga (0.55.4.React)
 
 DEPENDENCIES:
+  - AppCenter/Analytics (~> 1.6.1)
+  - AppCenter/Crashes (~> 1.6.1)
+  - AppCenterReactNativeShared (~> 1.5.1)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
@@ -80,14 +102,22 @@ DEPENDENCIES:
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
+  - React/RCTActionSheet (from `../node_modules/react-native`)
   - React/RCTAnimation (from `../node_modules/react-native`)
+  - React/RCTGeolocation (from `../node_modules/react-native`)
+  - React/RCTImage (from `../node_modules/react-native`)
+  - React/RCTLinkingIOS (from `../node_modules/react-native`)
   - React/RCTNetwork (from `../node_modules/react-native`)
+  - React/RCTSettings (from `../node_modules/react-native`)
   - React/RCTText (from `../node_modules/react-native`)
+  - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AppCenter
+    - AppCenterReactNativeShared
     - boost-for-react-native
     - Google-Maps-iOS-Utils
     - GoogleMaps
@@ -109,6 +139,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga/yoga.podspec"
 
 SPEC CHECKSUMS:
+  AppCenter: f9eb653a45cece34549232f295aec05260dfc24f
+  AppCenterReactNativeShared: 5b40dc5bbaf891697d1982e0ae0e9b1120dd4274
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: e22e0762848812a87afd67ffda3998d9ef29170c
   Folly: 211775e49d8da0ca658aebc8eab89d642935755c
@@ -116,10 +148,10 @@ SPEC CHECKSUMS:
   Google-Maps-iOS-Utils: c32891ff472eaaa1fca032beedafa1a013af7875
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
   React: aa2040dbb6f317b95314968021bd2888816e03d5
-  react-native-google-maps: 2cfe3b01f8422c7dae51d8764139fd70f888cfce
+  react-native-google-maps: 963fc78a5ac32dad3a726e4fa08b5307faa5cab2
   react-native-maps: 066c2afcc89e18726377bcc685315f989ca22449
   yoga: a23273df0088bf7f2bb7e5d7b00044ea57a2a54a
 
-PODFILE CHECKSUM: 78abf8647a0e8bb9fcd55d7baf5555cbd997938a
+PODFILE CHECKSUM: 04255e26bd3356f1cfbcf03ebf519b23a494fe32
 
 COCOAPODS: 1.5.3
