@@ -25,6 +25,7 @@
 #import <AppCenterReactNativeAnalytics.h>
 #import <AppCenterReactNativeCrashes.h>
 #import <AppCenterReactNativeShared/AppCenterReactNativeShared.h>
+#import <AppCenterReactNativePush/AppCenterReactNativePush.h>
 
 #import <GoogleMaps/GoogleMaps.h>
 
@@ -33,6 +34,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
+
 #ifdef DEBUG
   //  
     #ifdef DEBUG
@@ -73,6 +75,7 @@
   [AppCenterReactNative register];
   [AppCenterReactNativeAnalytics registerWithInitiallyEnabled:true];
   [AppCenterReactNativeCrashes registerWithAutomaticProcessing];
+  [AppCenterReactNativePush register];
 
   return YES;
 }

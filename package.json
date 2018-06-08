@@ -10,6 +10,7 @@
     "appcenter": "^1.5.1",
     "appcenter-analytics": "^1.5.1",
     "appcenter-crashes": "^1.5.1",
+    "appcenter-push": "^1.5.1",
     "apsl-react-native-button": "^3.1.1",
     "moment": "^2.22.2",
     "prop-types": "^15.6.1",
