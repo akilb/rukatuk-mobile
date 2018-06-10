@@ -1,3 +1,4 @@
 <resources>
     <color name="background_color">#282828</color>
+    <color name="notification">#febe28</color>
 </resources>
