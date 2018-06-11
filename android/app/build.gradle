@@ -115,14 +115,6 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
-    signingConfigs {
-        release {
-            storeFile file(project.env.get("RUKATUK_RELEASE_STORE_FILE"))
-            storePassword project.env.get("RUKATUK_RELEASE_STORE_PASSWORD")
-            keyAlias project.env.get("RUKATUK_RELEASE_KEY_ALIAS")
-            keyPassword project.env.get("RUKATUK_RELEASE_KEY_PASSWORD")
-        }
-    }
     splits {
         abi {
             reset()
@@ -139,7 +131,6 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
             manifestPlaceholders = [excludedPermissionName: "android.permission.SYSTEM_ALERT_WINDOW"]
         }
     }
