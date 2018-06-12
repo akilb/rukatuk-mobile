@@ -9,7 +9,6 @@ import {
   TouchableWithoutFeedback,
   View
 } from 'react-native';
-import Moment from 'moment';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import MapView from 'react-native-maps';
 import Button from 'apsl-react-native-button';
@@ -19,6 +18,7 @@ import { images } from '../../config/images';
 import { screens } from '../../config/screens';
 import ImageWithPlaceholder from '../../utils/ImageWithPlaceholder';
 import { trackScreenView, trackEvent } from '../../utils/analytics';
+import formatDate from '../../utils/date';
 import styles from './styles';
 
 export default class EventDetailScreen extends Component {
@@ -31,7 +31,7 @@ export default class EventDetailScreen extends Component {
   }
 
   componentDidMount() {
-    trackScreenView('Event Detail - ' + this.props.event.name);
+    trackScreenView('Event Detail', { Event: this.props.event.name });
 
     let shareIcon = Platform.OS === 'ios' ? 'share-square-o' : 'share-alt';
     Icon
@@ -53,7 +53,7 @@ export default class EventDetailScreen extends Component {
       return;
     }
 
-    trackEvent('UI Action', 'Button Press', { label: 'Share Event' });
+    trackEvent('Event Shared', { Event: this.props.event.name });
 
     let message = this.props.event.name;
     if (Platform.OS === 'android') {
@@ -68,7 +68,7 @@ export default class EventDetailScreen extends Component {
   }
 
   _onGetTicketsButtonPressed(event) {
-    trackEvent('UI Action', 'Button Press', { label: 'Get Tickets' });
+    trackEvent('Open Eventbrite', { Event: this.props.event.name });
 
     return Linking.openURL(event.vanityUrl);
   }
@@ -91,8 +91,8 @@ export default class EventDetailScreen extends Component {
 
   render() {
     let event = this.props.event;
-    let startDateText = Moment(event.startDate).format('ddd, D MMM YYYY @ hh:mm a');
-    let endDateText = Moment(event.endDate).format('hh:mm a');
+    let startDateText = formatDate(event.startDate, 'ddd, D MMM YYYY @ hh:mm a');
+    let endDateText = formatDate(event.endDate, 'hh:mm a');
     let region = {
       latitude: Number.parseFloat(event.venue.latitude),
       longitude: Number.parseFloat(event.venue.longitude),

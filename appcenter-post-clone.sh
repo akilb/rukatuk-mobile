@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# Create a .env file from environment variable values
+ENVIRONMENT_VARIABLES=(
+    GOOGLE_MAPS_API_KEY_ANDROID
+    GOOGLE_MAPS_API_KEY_IOS
+    APP_CENTER_SECRET_ANDROID
+    APP_CENTER_SECRET_IOS
+    CODE_PUSH_PRODUCTION_DEPLOYMENTKEY_ANDROID
+    CODE_PUSH_PRODUCTION_DEPLOYMENTKEY_IOS
+);
+
+touch $APPCENTER_SOURCE_DIRECTORY/.env
+for env_var in "${ENVIRONMENT_VARIABLES[@]}"
+do
+   echo $env_var=${!env_var} >> $APPCENTER_SOURCE_DIRECTORY/.env
+done

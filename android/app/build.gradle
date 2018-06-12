@@ -73,7 +73,12 @@ import com.android.build.OutputFile
  * ]
  */
 
+project.ext.react = [
+    entryFile: "index.js"
+]
+
 apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 
 project.ext.vectoricons = [
     iconFontNames: [ 'FontAwesome.ttf' ] // Name of the font files you want to copy
@@ -97,25 +102,17 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = true
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.rukatuk.app"
         minSdkVersion 16
-        targetSdkVersion 23
-        versionCode 3
-        versionName "2.0.1"
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 4
+        versionName "2.1.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
-        }
-    }
-    signingConfigs {
-        release {
-            storeFile file(project.env.get("RUKATUK_RELEASE_STORE_FILE"))
-            storePassword project.env.get("RUKATUK_RELEASE_STORE_PASSWORD")
-            keyAlias project.env.get("RUKATUK_RELEASE_KEY_ALIAS")
-            keyPassword project.env.get("RUKATUK_RELEASE_KEY_PASSWORD")
         }
     }
     splits {
@@ -134,7 +131,6 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
             manifestPlaceholders = [excludedPermissionName: "android.permission.SYSTEM_ALERT_WINDOW"]
         }
     }
@@ -154,21 +150,17 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-google-analytics-bridge')
-    compile project(':react-native-vector-icons')
-    compile project(':react-native-config')
-    compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:23.0.1"
-    compile "com.facebook.react:react-native:+"  // From node_modules
-    compile project(':react-native-navigation')
-
-    compile(project(':react-native-maps')) {
-        exclude group: 'com.google.android.gms', module: 'play-services-base'
-        exclude group: 'com.google.android.gms', module: 'play-services-maps'
-    }
-
-    compile 'com.google.android.gms:play-services-base:11.+'
-    compile 'com.google.android.gms:play-services-maps:11.+'
+    implementation project(':react-native-code-push')
+    implementation project(':appcenter')
+    implementation project(':appcenter-crashes')
+    implementation project(':appcenter-analytics')
+    implementation project(':react-native-vector-icons')
+    implementation project(':react-native-config')
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "com.android.support:appcompat-v7:23.0.1"
+    implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation project(':react-native-navigation')
+    implementation project(':react-native-maps')
 }
 
 // Run this once to be able to run the application with BUCK

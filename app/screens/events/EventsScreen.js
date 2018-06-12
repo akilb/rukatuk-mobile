@@ -10,8 +10,6 @@ import {
   TouchableHighlight,
   View
 } from 'react-native';
-import Moment from 'moment';
-import Badge from 'react-native-smart-badge';
 
 import appStyles, { theme, navigatorStyle } from '../../config/styles';
 import styles from './styles';
@@ -19,6 +17,7 @@ import { images } from '../../config/images';
 import { screens } from '../../config/screens';
 import ImageWithPlaceholder from '../../utils/ImageWithPlaceholder';
 import { trackScreenView, trackEvent } from '../../utils/analytics';
+import formatDate from '../../utils/date';
 import Countdown from './Countdown';
 
 export default class EventsScreen extends Component {
@@ -43,7 +42,7 @@ export default class EventsScreen extends Component {
   };
 
   _onRefresh() {
-    trackEvent('UI Action', 'Pull-To-Refresh', {label: 'Refresh Events'});
+    trackEvent('Refreshed Events');
 
     this.setState({ refreshing: true });
 
@@ -66,7 +65,7 @@ export default class EventsScreen extends Component {
       .then(() => this.props.fetchEvents.fetchRemoteEvents())
       .then(events => this.updateEvents(events))
       .catch(err => {
-        trackEvent('Data', 'Error loading events');
+        trackEvent('Error Loading Events');
 
         this.setState({
           loading: false,
@@ -223,9 +222,8 @@ export default class EventsScreen extends Component {
                 color: theme.colours.subtle,
                 paddingTop: 1
               }}>
-                {Moment(event.startDate).format('ddd, D MMM @HH:mm')}
+                {formatDate(event.startDate, 'ddd, D MMM @HH:mm')}
               </Text>
-              { isLive && <Badge style={{ backgroundColor: theme.colours.primary }}>LIVE</Badge>}
             </View>
           </View>
         </View>
@@ -262,7 +260,7 @@ export default class EventsScreen extends Component {
             <Text
               ellipsizeMode={'tail'}
               numberOfLines={1}
-              style={styles.pastEventSubtleText}>{Moment(event.startDate).format('D MMM YYYY')}</Text>
+              style={styles.pastEventSubtleText}>{formatDate(event.startDate, 'D MMM YYYY')}</Text>
           </View>
         </View>
       </TouchableHighlight>

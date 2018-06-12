@@ -24,7 +24,7 @@ export default class EventMapScreen extends Component {
   }
 
   componentDidMount() {
-    trackScreenView('Event Map - ' + this.props.event.name);
+    trackScreenView('Event Map', { Event: this.props.event.name });
 
     Icon
       .getImageSource('map-o', 20, 'white')
@@ -45,7 +45,7 @@ export default class EventMapScreen extends Component {
       return;
     }
 
-    trackEvent('UI Action', 'Button Press', { label: 'Open Maps' });
+    trackEvent('Open Maps', { Event: this.props.event.name });
 
     let mapsUrlBase = Platform.OS === 'ios' ? 'http://maps.apple.com/?ll=' : 'geo:';
     let venue = this.props.event.venue;

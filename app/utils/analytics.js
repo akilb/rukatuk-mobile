@@ -1,19 +1,14 @@
-import {
-  GoogleAnalyticsSettings,
-  GoogleAnalyticsTracker
-} from 'react-native-google-analytics-bridge';
-import { settings } from '../config/settings';
+import Analytics from 'appcenter-analytics';
 
-GoogleAnalyticsSettings.setDispatchInterval(30);
-let tracker = new GoogleAnalyticsTracker(settings.googleAnalyticsAccount);
-tracker.setTrackUncaughtExceptions(true);
+// const analytics = firebase.analytics();
+// analytics.setAnalyticsCollectionEnabled(true);
 
-function trackScreenView(screenName) {
-  tracker.trackScreenView(screenName);
+function trackScreenView(screenName, properties) {
+  Analytics.trackEvent('Screen View - ' + screenName, properties);
 }
 
-function trackEvent(category, action) {
-  tracker.trackEvent(category, action);
+function trackEvent(event, properties) {
+  Analytics.trackEvent(event, properties);
 }
 
 export { trackScreenView, trackEvent };
